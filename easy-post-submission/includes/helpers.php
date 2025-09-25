@@ -144,6 +144,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Helper', false ) ) {
 
 		}
 
+
 		/**
 		 * Retrieves data about the posts created by the logged-in user.
 		 *

@@ -1805,6 +1805,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 			if ( $post_before->post_status !== 'publish' && $post_after->post_status === 'publish' ) {
 
 				$form_settings_result = json_decode( wp_kses_post( wp_unslash( $form_settings->data ) ), true );
+
 				if ( json_last_error() !== JSON_ERROR_NONE ) {
 					return;
 				}

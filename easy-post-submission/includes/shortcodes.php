@@ -379,6 +379,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Form_Shortcode', false ) ) {
 			}
 
 			$data                   = $helper->filter_settings( json_decode( $form_settings->data, true ) );
+			$form_settings->data    = wp_json_encode( $data );
 			$result['categories']   = $helper->get_categories( $data );
 			$result['tags']         = $helper->get_tags( $data );
 			$result['formSettings'] = $form_settings;

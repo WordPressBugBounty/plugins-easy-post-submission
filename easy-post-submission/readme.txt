@@ -4,7 +4,7 @@ Tags: frontend post, guest post, anonymous post, user post, public post
 Requires at least: 6.3
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.7.0
+Stable tag: 2.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -94,6 +94,10 @@ Yes or no, depending on your choice in the settings.
 If you want to contribute, visit our [GitHub Repository](https://github.com/ThemeRuby/easy-post-submission) and see where you can help.
 
 == Changelog ==
+
+= 2.0.0 =
+* Fixed: Category and tag entity decoding issue
+* Fixed: Enhanced security and data protection
 
 = 1.7.0 =
 * Improved: Import/export functionality.

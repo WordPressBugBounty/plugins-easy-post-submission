@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
  * Author:            ThemeRuby
  * License:           GPLv3
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
- * Version:           1.7.0
+ * Version:           2.0.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author URI:        https://themeruby.com/
@@ -26,7 +26,7 @@ defined( 'ABSPATH' ) || exit;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-define( 'EASY_POST_SUBMISSION_VERSION', '1.7.0' );
+define( 'EASY_POST_SUBMISSION_VERSION', '2.0.0' );
 define( 'EASY_POST_SUBMISSION_BASENAME', plugin_basename( __FILE__ ) );
 define( 'EASY_POST_SUBMISSION_URL', plugins_url( '/', __FILE__ ) );
 define( 'EASY_POST_SUBMISSION_REL_PATH', dirname( EASY_POST_SUBMISSION_BASENAME ) );
