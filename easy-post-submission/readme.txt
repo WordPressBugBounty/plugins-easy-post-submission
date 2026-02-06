@@ -2,9 +2,9 @@
 Contributors: themeruby
 Tags: frontend post, guest post, anonymous post, user post, public post
 Requires at least: 6.3
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.2.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -94,6 +94,17 @@ Yes or no, depending on your choice in the settings.
 If you want to contribute, visit our [GitHub Repository](https://github.com/ThemeRuby/easy-post-submission) and see where you can help.
 
 == Changelog ==
+
+= 2.2.0 =
+* Fixed: Author assignment issue
+* Fixed: Public post email sending issue
+* and other minor bug fixes
+
+
+= 2.1.0 =
+* Added: Support for login form via shortcode
+* Added: Support for registration form via shortcode
+* Improved: CAPTCHA settings moved to global configuration
 
 = 2.0.0 =
 * Fixed: Category and tag entity decoding issue
