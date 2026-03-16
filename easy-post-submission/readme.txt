@@ -4,7 +4,7 @@ Tags: frontend post, guest post, anonymous post, user post, public post
 Requires at least: 6.3
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.2.0
+Stable tag: 2.3.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -27,7 +27,7 @@ View all features [Visit the Official Site](https://easyps.net/)
 * **Custom Publishing Options:** Choose between auto-publishing posts or setting them for admin approval before going live.
 * **User Dashboard:** Provide a personalized dashboard for users to view and manage their submitted posts.
 * **Automated Email Notifications:** Keep everyone informed with automated email alerts for submissions, approvals, or rejections.
-* **Robust Spam Protection:** Secure your forms with Google reCAPTCHA to prevent spam and bot submissions.
+* **Robust Spam Protection:** Secure your forms with Google reCAPTCHA or Cloudflare Turnstile to prevent spam and bot submissions.
 
 == Demo ==
 
@@ -41,9 +41,16 @@ Access the plugin documentation for usage instructions: [here](https://easyps.ne
 
 == External Services ==
 
-This plugin connects to an API to obtain reCAPTCHA information. It is needed to verify humans when submitting and to avoid spam.
-The plugin will connect to reCAPTCHA each time the visitor performs a verification action.
+This plugin connects to external APIs to verify human visitors and prevent spam submissions:
+
+**Google reCAPTCHA**
+The plugin can connect to Google reCAPTCHA to verify visitors when submitting forms.
 For more details, refer to the reCAPTCHA Privacy Policy: https://policies.google.com/privacy
+
+**Cloudflare Turnstile**
+As an alternative to reCAPTCHA, the plugin supports Cloudflare Turnstile for spam protection.
+The plugin connects to Cloudflare Turnstile API (https://challenges.cloudflare.com/turnstile/v0/siteverify) to verify visitor responses.
+For more details, refer to the Cloudflare Privacy Policy: https://www.cloudflare.com/privacypolicy/
 
 
 == Installation ==
@@ -94,6 +101,13 @@ Yes or no, depending on your choice in the settings.
 If you want to contribute, visit our [GitHub Repository](https://github.com/ThemeRuby/easy-post-submission) and see where you can help.
 
 == Changelog ==
+
+= 2.3.0 =
+* Security: Removed SVG upload support to prevent XSS vulnerabilities
+* Added: Cloudflare Turnstile support as an alternative to Google reCAPTCHA
+* Added: WEBP image format support for featured images
+* Added: Enable Tags setting to show/hide tags field in submission forms
+* Fixed: POST request validation logic in account forms
 
 = 2.2.0 =
 * Fixed: Author assignment issue

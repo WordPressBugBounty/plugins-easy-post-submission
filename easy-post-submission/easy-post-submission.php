@@ -1,7 +1,7 @@
 <?php
 
 // Exit if accessed directly.
-defined('ABSPATH') || exit;
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Plugin Name:       Easy Post Submission
@@ -11,7 +11,7 @@ defined('ABSPATH') || exit;
  * Author:            ThemeRuby
  * License:           GPLv3
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
- * Version:           2.2.0
+ * Version:           2.3.0
  * Requires at least: 6.3
  * Requires PHP:      7.4
  * Author URI:        https://themeruby.com/
@@ -27,19 +27,19 @@ defined('ABSPATH') || exit;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-define('EASY_POST_SUBMISSION_VERSION', '2.2.0');
-define('EASY_POST_SUBMISSION_BASENAME', plugin_basename(__FILE__));
-define('EASY_POST_SUBMISSION_URL', plugins_url('/', __FILE__));
-define('EASY_POST_SUBMISSION_REL_PATH', dirname(EASY_POST_SUBMISSION_BASENAME));
-define('EASY_POST_SUBMISSION_PATH', plugin_dir_path(__FILE__));
+define( 'EASY_POST_SUBMISSION_VERSION', '2.3.0' );
+define( 'EASY_POST_SUBMISSION_BASENAME', plugin_basename( __FILE__ ) );
+define( 'EASY_POST_SUBMISSION_URL', plugins_url( '/', __FILE__ ) );
+define( 'EASY_POST_SUBMISSION_REL_PATH', dirname( EASY_POST_SUBMISSION_BASENAME ) );
+define( 'EASY_POST_SUBMISSION_PATH', plugin_dir_path( __FILE__ ) );
 require_once EASY_POST_SUBMISSION_PATH . 'includes/client-ajax-handler.php';
 
-if (! class_exists('Easy_Post_Submission')) {
+if ( ! class_exists( 'Easy_Post_Submission' ) ) {
 	/**
 	 * Class Easy_Post_Submission
 	 */
-	class Easy_Post_Submission
-	{
+	class Easy_Post_Submission {
+
 		private static $instance;
 
 		/**
@@ -47,8 +47,7 @@ if (! class_exists('Easy_Post_Submission')) {
 		 *
 		 * @return void
 		 */
-		public function __clone()
-		{
+		public function __clone() {
 		}
 
 		/**
@@ -56,8 +55,7 @@ if (! class_exists('Easy_Post_Submission')) {
 		 *
 		 * @return void
 		 */
-		public function __wakeup()
-		{
+		public function __wakeup() {
 		}
 
 		/**
@@ -65,9 +63,8 @@ if (! class_exists('Easy_Post_Submission')) {
 		 *
 		 * @return Easy_Post_Submission The single instance of the class.
 		 */
-		public static function get_instance()
-		{
-			if (null === self::$instance) {
+		public static function get_instance() {
+			if ( null === self::$instance ) {
 				return new self();
 			}
 
@@ -79,16 +76,15 @@ if (! class_exists('Easy_Post_Submission')) {
 		 *
 		 * Registers activation, deactivation hooks and loads the necessary plugin files.
 		 */
-		private function __construct()
-		{
+		private function __construct() {
 			self::$instance = $this;
 
 			// activation hooks
-			register_activation_hook(__FILE__, [$this, 'activation']);
-			register_deactivation_hook(__FILE__, [$this, 'deactivation']);
+			register_activation_hook( __FILE__, [ $this, 'activation' ] );
+			register_deactivation_hook( __FILE__, [ $this, 'deactivation' ] );
 
-			add_action('plugins_loaded', [$this, 'load_files'], 1);
-			add_filter('query_vars', [$this, 'query_vars']);
+			add_action( 'plugins_loaded', [ $this, 'load_files' ], 1 );
+			add_filter( 'query_vars', [ $this, 'query_vars' ] );
 		}
 
 		/**
@@ -96,14 +92,13 @@ if (! class_exists('Easy_Post_Submission')) {
 		 *
 		 * @return void
 		 */
-		public function load_files()
-		{
+		public function load_files() {
 			include_once EASY_POST_SUBMISSION_PATH . 'includes/description-strings.php';
 			include_once EASY_POST_SUBMISSION_PATH . 'includes/helpers.php';
 			include_once EASY_POST_SUBMISSION_PATH . 'includes/recaptcha-migration.php';
 			include_once EASY_POST_SUBMISSION_PATH . 'includes/account-shortcodes.php';
 
-			if (is_admin()) {
+			if ( is_admin() ) {
 				include_once EASY_POST_SUBMISSION_PATH . 'admin/admin-menu.php';
 				require_once EASY_POST_SUBMISSION_PATH . 'admin/ajax-handler.php';
 			} else {
@@ -118,8 +113,7 @@ if (! class_exists('Easy_Post_Submission')) {
 		 *
 		 * @return array Modified query variables.
 		 */
-		public function query_vars($qvars)
-		{
+		public function query_vars( $qvars ) {
 			$qvars[] = 'rbsm-id';
 
 			return $qvars;
@@ -132,13 +126,12 @@ if (! class_exists('Easy_Post_Submission')) {
 		 *
 		 * @return void
 		 */
-		public function activation($network)
-		{
-			if (is_multisite() && $network) {
+		public function activation( $network ) {
+			if ( is_multisite() && $network ) {
 				$sites = get_sites();
-				foreach ($sites as $site) {
+				foreach ( $sites as $site ) {
 					// change to another site
-					switch_to_blog((int) $site->blog_id);
+					switch_to_blog( (int) $site->blog_id );
 
 					// activation process
 					$this->activate_site();
@@ -154,9 +147,8 @@ if (! class_exists('Easy_Post_Submission')) {
 		 *
 		 * @return void
 		 */
-		public function deactivation()
-		{
-			delete_option('easy_post_submission_setup_flag');
+		public function deactivation() {
+			delete_option( 'easy_post_submission_setup_flag' );
 		}
 
 		/**
@@ -164,22 +156,23 @@ if (! class_exists('Easy_Post_Submission')) {
 		 *
 		 * @return void
 		 */
-		public function activate_site()
-		{
+		public function activate_site() {
 			global $wpdb;
 
 			$charset_collate = $wpdb->get_charset_collate();
 
 			// required for dbdelta
-			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
-			dbDelta("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}rb_submission (
+			dbDelta(
+				"CREATE TABLE IF NOT EXISTS {$wpdb->prefix}rb_submission (
                         `id` INT(11) NOT NULL AUTO_INCREMENT,
                         `title` VARCHAR(50) NOT NULL,
                         `data` TEXT NOT NULL,
                         PRIMARY KEY (`id`)
                     ) {$charset_collate};
-                ");
+                "
+			);
 		}
 	}
 }
