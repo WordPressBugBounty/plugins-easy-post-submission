@@ -76,17 +76,20 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 
 			$data = [];
 
-			$data['id']                    = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
-			$data['paged']                 = isset( $_POST['paged'] ) ? absint( $_POST['paged'] ) : 0;
-			$data['formId']                = isset( $_POST['formId'] ) ? absint( $_POST['formId'] ) : 0;
-			$data['postId']                = isset( $_POST['postId'] ) ? absint( $_POST['postId'] ) : 0;
-			$data['title']                 = isset( $_POST['title'] ) ? sanitize_text_field( wp_unslash( $_POST['title'] ) ) : '';
-			$data['excerpt']               = isset( $_POST['excerpt'] ) ? sanitize_text_field( wp_unslash( $_POST['excerpt'] ) ) : '';
-			$data['userEmail']             = isset( $_POST['userEmail'] ) ? sanitize_email( wp_unslash( $_POST['userEmail'] ) ) : '';
-			$data['userName']              = isset( $_POST['userName'] ) ? sanitize_text_field( wp_unslash( $_POST['userName'] ) ) : '';
-			$data['content']               = isset( $_POST['content'] ) ? wp_kses_post( wp_unslash( $_POST['content'] ) ) : '';
-			$data['captchaType']           = isset( $_POST['captchaType'] ) ? sanitize_text_field( wp_unslash( $_POST['captchaType'] ) ) : 'none';
-			$data['captchaResponse']       = isset( $_POST['captchaResponse'] ) ? sanitize_text_field( wp_unslash( $_POST['captchaResponse'] ) ) : '';
+			$data['id']              = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
+			$data['paged']           = isset( $_POST['paged'] ) ? absint( $_POST['paged'] ) : 0;
+			$data['formId']          = isset( $_POST['formId'] ) ? absint( $_POST['formId'] ) : 0;
+			$data['postId']          = isset( $_POST['postId'] ) ? absint( $_POST['postId'] ) : 0;
+			$data['title']           = isset( $_POST['title'] ) ? sanitize_text_field( wp_unslash( $_POST['title'] ) ) : '';
+			$data['excerpt']         = isset( $_POST['excerpt'] ) ? sanitize_text_field( wp_unslash( $_POST['excerpt'] ) ) : '';
+			$data['userEmail']       = isset( $_POST['userEmail'] ) ? sanitize_email( wp_unslash( $_POST['userEmail'] ) ) : '';
+			$data['userName']        = isset( $_POST['userName'] ) ? sanitize_text_field( wp_unslash( $_POST['userName'] ) ) : '';
+			// Content is intentionally NOT sanitized here to preserve base64 image data URIs.
+			// Sanitization with wp_kses_post() is applied AFTER base64 images are processed
+			// and uploaded to the media library in handle_data_to_submit_post() at line ~956.
+			$data['content']         = isset( $_POST['content'] ) ? wp_unslash( $_POST['content'] ) : '';
+			$data['captchaType']     = isset( $_POST['captchaType'] ) ? sanitize_text_field( wp_unslash( $_POST['captchaType'] ) ) : 'none';
+			$data['captchaResponse'] = isset( $_POST['captchaResponse'] ) ? sanitize_text_field( wp_unslash( $_POST['captchaResponse'] ) ) : '';
 			// Legacy support for old recaptchaResponse field
 			$data['recaptchaResponse']     = isset( $_POST['recaptchaResponse'] ) ? sanitize_text_field( wp_unslash( $_POST['recaptchaResponse'] ) ) : $data['captchaResponse'];
 			$data['challengeResponse']     = isset( $_POST['challengeResponse'] ) ? sanitize_text_field( wp_unslash( $_POST['challengeResponse'] ) ) : '';
@@ -178,198 +181,6 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 			}
 
 			$this->notify_user_when_post_trashed( $post_link, $title, $form_settings_result, $user_email );
-		}
-
-		/**
-		 * Convert a name to a valid ID string.
-		 *
-		 * This method takes a name as input, sanitizes it by removing non-alphanumeric characters
-		 * and replacing them with dashes, and then truncates the resulting string to a maximum of 20 characters.
-		 * If the input name is empty, the current date is used as the default value.
-		 *
-		 * @param string $name The name to convert into a valid ID string.
-		 *
-		 * @return string The sanitized and truncated ID string.
-		 */
-		private function convert_to_id( $name ) {
-			$name = ! empty( $name ) ? $name : gmdate( 'Y-m-d' );
-			$name = preg_replace( '/[^a-zA-Z0-9]+/', '-', trim( $name ) );
-			$name = trim( $name, '-' );
-
-			return substr( $name, 0, 20 );
-		}
-
-		/**
-		 * Convert base64 encoded image data to images, upload them, and return their URLs and IDs.
-		 *
-		 * This method decodes base64 image data, uploads the images, and retrieves their URLs and IDs.
-		 * The method is typically used when working with images encoded in base64 format that need to be saved
-		 * to the server and their properties (URLs and IDs) retrieved for further use.
-		 *
-		 * @param string $post_title The title of the post associated with the images.
-		 * @param string $base64ImageData The base64 encoded image data to be uploaded.
-		 *
-		 * @return array An associative array containing two keys:
-		 *               - 'image_urls': An array of the uploaded image URLs.
-		 *               - 'image_ids': An array of the uploaded image IDs.
-		 */
-		private function upload_images_and_get_properties( $post_title, $base64_image_data ) {
-			$image_urls   = [];
-			$image_ids    = [];
-			$type_pattern = '/image\/([a-zA-Z0-9]+);base64/';
-
-			$base64_full_tags = $base64_image_data[0];
-			$base64_contents  = $base64_image_data[1];
-
-			// Validate that $base64_contents is an array and not empty
-			if ( ! is_array( $base64_contents ) || empty( $base64_contents ) ) {
-				return [
-					'image_urls' => $image_urls,
-					'image_ids'  => $image_ids,
-				];
-			}
-
-			// Initialize WP_Filesystem once before the loop
-			if ( ! function_exists( 'wp_filesystem' ) ) {
-				require_once ABSPATH . 'wp-admin/includes/file.php';
-			}
-			WP_Filesystem();
-			global $wp_filesystem;
-
-			// Load media functions once before the loop
-			if ( ! function_exists( 'media_handle_sideload' ) ) {
-				require_once ABSPATH . 'wp-admin/includes/file.php';
-				require_once ABSPATH . 'wp-admin/includes/media.php';
-				require_once ABSPATH . 'wp-admin/includes/image.php';
-			}
-
-			// Get upload directory once before the loop
-			$upload_dir = wp_upload_dir();
-
-			// Allowed image types whitelist
-			$allowed_extensions = [ 'jpg', 'jpeg', 'png', 'gif', 'webp' ];
-
-			foreach ( $base64_contents as $index => $base64_data ) {
-				// Validate image type BEFORE decoding to prevent resource exhaustion
-				if ( ! preg_match( $type_pattern, $base64_full_tags[ $index ], $image_type ) ) {
-					$this->cleanup_uploaded_images( $image_ids );
-					wp_send_json_error( esc_html__( 'Invalid image format detected.', 'easy-post-submission' ) );
-					wp_die();
-				}
-
-				$image_extension = 'jpeg' === $image_type[1] ? 'jpg' : strtolower( $image_type[1] );
-
-				// Validate against allowed extensions whitelist
-				if ( ! in_array( $image_extension, $allowed_extensions, true ) ) {
-					$this->cleanup_uploaded_images( $image_ids );
-					wp_send_json_error( esc_html__( 'File type not allowed. Supported formats: JPG, PNG, GIF, WEBP.', 'easy-post-submission' ) );
-					wp_die();
-				}
-
-				// Now decode the base64 data with strict mode
-				$image_data = base64_decode( $base64_data, true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
-
-				// Validate base64 decode was successful
-				if ( false === $image_data ) {
-					$this->cleanup_uploaded_images( $image_ids );
-					wp_send_json_error( esc_html__( 'Invalid image data.', 'easy-post-submission' ) );
-					wp_die();
-				}
-				$file_name = $this->convert_to_id( $post_title ) . '-' . uniqid() . '.' . $image_extension;
-				$file_path = $upload_dir['path'] . '/' . $file_name;
-
-				$wp_filesystem->put_contents( $file_path, $image_data, FS_CHMOD_FILE );
-
-				$file = [
-					'name'     => wp_basename( $file_name ),
-					'type'     => 'image/' . $image_extension,
-					'tmp_name' => $file_path,
-					'error'    => 0,
-					'size'     => filesize( $file_path ),
-				];
-
-				$attachment_id = media_handle_sideload( $file );
-
-				if ( is_wp_error( $attachment_id ) ) {
-					wp_delete_file( $file_path );
-					$this->cleanup_uploaded_images( $image_ids );
-					wp_send_json_error( esc_html__( 'Failed to process some images in the content. Please make sure you are using supported image file types and try again.', 'easy-post-submission' ) );
-					wp_die();
-				}
-				$attachment_url = wp_get_attachment_url( $attachment_id );
-				if ( $attachment_url ) {
-					$image_urls[] = $attachment_url;
-					$image_ids[]  = $attachment_id;
-				} else {
-					$this->cleanup_uploaded_images( $image_ids );
-					wp_send_json_error( esc_html__( 'Failed to handle the attachment image URL in the post content. Please contact the webmaster for assistance.', 'easy-post-submission' ) );
-					wp_die();
-				}
-			}
-
-			return [
-				'image_urls' => $image_urls,
-				'image_ids'  => $image_ids,
-			];
-		}
-
-		/**
-		 * Cleanup uploaded images by deleting attachments
-		 *
-		 * @param array $image_ids Array of attachment IDs to delete
-		 *
-		 * @return void
-		 */
-		private function cleanup_uploaded_images( $image_ids ) {
-			if ( empty( $image_ids ) ) {
-				return;
-			}
-
-			foreach ( $image_ids as $image_id ) {
-				wp_delete_attachment( $image_id, true );
-			}
-		}
-
-		/**
-		 * Create image tags for each image URL and return them as an array.
-		 *
-		 * This method generates HTML image tags (`<img>`) for each provided image URL.
-		 * It is typically used when you need to display images in the content of a post,
-		 * ensuring that each image has a standard `img` HTML tag with proper attributes.
-		 *
-		 * @param array $image_urls An array of image URLs for which the HTML image tags need to be created.
-		 *
-		 * @return array An array of HTML `<img>` tags corresponding to each image URL.
-		 */
-		private function create_image_tag_in_post( $image_urls ) {
-			$image_tags = [];
-			foreach ( $image_urls as $image_url ) {
-				$image_tag    = '<img class="alignnone size-full" src="' . esc_url( $image_url ) . '" alt="" />';
-				$image_tags[] = $image_tag;
-			}
-
-			return $image_tags;
-		}
-
-		/**
-		 * Replace base64 image data with corresponding image tags in the content.
-		 *
-		 * This method takes the content containing base64-encoded image data and replaces
-		 * each occurrence of the base64 data with the corresponding HTML `<img>` tag.
-		 * It is useful when you want to convert embedded base64 images into traditional image tags.
-		 *
-		 * @param string $content The content that contains base64 image data.
-		 * @param array $base64_data An array of base64-encoded image data.
-		 * @param array $image_tags An array of HTML `<img>` tags that will replace the base64 data.
-		 *
-		 * @return string The content with the base64 image data replaced by HTML image tags.
-		 */
-		private function convert_base64_to_img_tag( $content, $base64_data, $image_tags ) {
-			foreach ( $image_tags as $index => $image_tag ) {
-				$content = str_replace( $base64_data[ $index ], $image_tag, $content );
-			}
-
-			return $content;
 		}
 
 		/**
@@ -754,81 +565,36 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 		}
 
 		/**
-		 * Validates the images in the post content based on form settings.
+		 * Validates the total number of images in the post content based on form settings.
 		 *
-		 * This method checks the number and size of the images in the post content against the limits set
-		 * in the form settings. If the images exceed the allowed number or size, an error message is returned.
+		 * This method checks the number of images in the post content against the limits set
+		 * in the form settings. If the images exceed the allowed number, an error message is returned.
 		 *
-		 * @param string $content The content of the post which may contain images to be validated.
-		 * @param array $form_settings_result The settings of the form, including the maximum allowed number of images
-		 *                                     and the maximum allowed image size.
+		 * Note: Base64 image size validation is handled earlier by
+		 * Easy_Post_Submission_Client_Helper::process_base64_images_in_content()
+		 *
+		 * @param string $content             The content of the post which may contain images to be validated.
+		 * @param array  $form_settings_result The settings of the form, including the maximum allowed number of images.
 		 *
 		 * @return array An array with the validation result. If successful, the `status` will be `true` and
 		 *               a message indicating valid images will be returned. If validation fails, the `status`
-		 *               will be `false`, and a message with the error will be returned (e.g., exceeding the max number
-		 *               of images or the max image size).
+		 *               will be `false`, and a message with the error will be returned.
 		 */
 		private function validate_images( $content, $form_settings_result ) {
-			$max_images_allowed     = isset( $form_settings_result['form_fields']['max_images'] ) ? $form_settings_result['form_fields']['max_images'] : 3;
-			$max_image_size_allowed = isset( $form_settings_result['form_fields']['max_image_size'] ) ? $form_settings_result['form_fields']['max_image_size'] : 100;
-			$amount_images          = $this->get_total_images_in_content( $content );
+			$max_images_allowed = isset( $form_settings_result['form_fields']['max_images'] ) ? absint( $form_settings_result['form_fields']['max_images'] ) : 3;
+			$amount_images      = $this->get_total_images_in_content( $content );
 
-			if ( $amount_images > $max_images_allowed ) {
+			if ( $max_images_allowed > 0 && $amount_images > $max_images_allowed ) {
 				return [
 					'status'  => false,
-
 					/* translators: %d is the maximum number of images allowed */
 					'message' => sprintf( esc_html__( 'You have reached the maximum limit of %d images.', 'easy-post-submission' ), $max_images_allowed ),
-				];
-			}
-
-			$validate_size_base64_images = $this->validate_size_base64_images( $max_image_size_allowed, $content );
-			if ( ! $validate_size_base64_images['status'] ) {
-				return [
-					'status'  => false,
-					'message' => $validate_size_base64_images['message'],
 				];
 			}
 
 			return [
 				'status'  => true,
 				'message' => esc_html__( 'Valid images.', 'easy-post-submission' ),
-			];
-		}
-
-		/**
-		 * Validates the size of base64-encoded images in the post content.
-		 *
-		 * This method checks each base64-encoded image in the content against the maximum allowed size. If any
-		 * image exceeds the allowed size, an error message is returned.
-		 *
-		 * @param int $max_image_size_allowed The maximum allowed image size in kilobytes (KB).
-		 * @param string $content The content of the post, which may contain base64-encoded images to be validated.
-		 *
-		 * @return array An array with the validation result. If successful, the `status` will be `true` and
-		 *               a message indicating valid image base64 will be returned. If validation fails, the `status`
-		 *               will be `false`, and a message with the error (e.g., exceeding the allowed size) will be returned.
-		 */
-		private function validate_size_base64_images( $max_image_size_allowed, $content ) {
-			$base64_pattern = '/<img[^>]+src="image\/[^;]+;base64,([^"]+)"[^>]*>/i';
-
-			preg_match_all( $base64_pattern, $content, $base64_matches );
-
-			$base64_contents = $base64_matches[1];
-			foreach ( $base64_contents as $base64_content ) {
-				$size = ( strlen( $base64_content ) * 3 ) / 4;
-				if ( $size > $max_image_size_allowed * 1024 ) {
-					return [
-						'status'  => false,
-						/* translators: %1$s is the size of the image and %2$d is the maximum allowed image size in KB */
-						'message' => sprintf( esc_html__( 'The size %1$s of the image has exceeded the allowed limit, which is %2$dKB.', 'easy-post-submission' ), $size, $max_image_size_allowed ),
-					];
-				}
-			}
-
-			return [
-				'status'  => true,
-				'message' => esc_html__( 'Valid image base64.', 'easy-post-submission' ),
 			];
 		}
 
@@ -919,8 +685,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 				];
 			}
 
-			$email_regex = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
-			if ( ! preg_match( $email_regex, $user_email ) ) {
+			if ( ! is_email( $user_email ) ) {
 				return [
 					'status'  => false,
 					'message' => esc_html__( 'User email is invalid.', 'easy-post-submission' ),
@@ -1025,11 +790,21 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 			}
 
 			$allowed_extensions = [ 'jpg', 'jpeg', 'png', 'gif', 'webp' ];
+			$allowed_mime_types = [ 'image/jpeg', 'image/png', 'image/gif', 'image/webp' ];
 
 			if ( empty( $featured_image_file['name'] ) || ! in_array( strtolower( pathinfo( $featured_image_file['name'], PATHINFO_EXTENSION ) ), $allowed_extensions, true ) ) {
 				return [
 					'status'  => 'error',
 					'message' => esc_html__( 'Invalid file or extension. Allowed extensions: JPG, JPEG, PNG, GIF, WEBP.', 'easy-post-submission' ),
+				];
+			}
+
+			// Verify actual MIME type matches allowed types (defense-in-depth).
+			$file_info = wp_check_filetype_and_ext( $featured_image_file['tmp_name'], $featured_image_file['name'] );
+			if ( empty( $file_info['type'] ) || ! in_array( $file_info['type'], $allowed_mime_types, true ) ) {
+				return [
+					'status'  => 'error',
+					'message' => esc_html__( 'Invalid file type. The file content does not match an allowed image format.', 'easy-post-submission' ),
 				];
 			}
 
@@ -1074,10 +849,8 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 				wp_die();
 			}
 
-			$author_id       = (int) $post->post_author;
-			$current_user_id = get_current_user_id();
-
-			if ( $author_id !== $current_user_id ) {
+			// Security: Use WordPress capability check to verify user can edit this specific post.
+			if ( ! current_user_can( 'edit_post', $created_post_id ) ) {
 				wp_send_json_error( esc_html__( 'You are not allowed to edit this post.', 'easy-post-submission' ) );
 				wp_die();
 			}
@@ -1093,6 +866,9 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 		 */
 		public function create_post() {
 			$data = $this->get_sanitized_submission_data();
+
+			// The create_post action should only create NEW posts.
+			$data['postId'] = 0;
 
 			$this->handle_data_to_submit_post( $data );
 		}
@@ -1166,7 +942,27 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 				wp_die();
 			}
 
+			// Process base64 images in content and upload to media library.
+			$base64_result = Easy_Post_Submission_Client_Helper::process_base64_images_in_content(
+				$content,
+				$created_post_id,
+				$form_settings_result
+			);
+
+			if ( ! $base64_result['success'] ) {
+				wp_send_json_error( $base64_result['message'] );
+				wp_die();
+			}
+
+			// Update content with processed URLs and sanitize.
+			$content = wp_kses_post( $base64_result['content'] );
+
+			// Store attachment IDs for potential cleanup if post creation fails.
+			$content_attachment_ids = $base64_result['attachment_ids'];
+
 			if ( empty( $content ) || '<p><br></p>' === $content ) {
+				// Clean up any uploaded attachments before failing.
+				Easy_Post_Submission_Client_Helper::cleanup_attachments( $content_attachment_ids );
 				wp_send_json_error( esc_html__( 'Please provide the content for your post before submitting.', 'easy-post-submission' ) );
 				wp_die();
 			}
@@ -1174,18 +970,21 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 			$title_validate = $this->validate_title( $created_post_id, $title, $form_settings_result );
 
 			if ( ! $title_validate['status'] ) {
+				Easy_Post_Submission_Client_Helper::cleanup_attachments( $content_attachment_ids );
 				wp_send_json_error( $title_validate['message'] );
 				wp_die();
 			}
 
 			$excerpt_validate = $this->validate_excerpt( $excerpt, $form_settings_result );
 			if ( ! $excerpt_validate['status'] ) {
+				Easy_Post_Submission_Client_Helper::cleanup_attachments( $content_attachment_ids );
 				wp_send_json_error( $excerpt_validate['message'] );
 				wp_die();
 			}
 
 			$images_in_post_validate = $this->validate_images( $content, $form_settings_result );
 			if ( ! $images_in_post_validate['status'] ) {
+				Easy_Post_Submission_Client_Helper::cleanup_attachments( $content_attachment_ids );
 				wp_send_json_error( $images_in_post_validate['message'] );
 				wp_die();
 			}
@@ -1193,12 +992,14 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 			if ( ! is_user_logged_in() ) {
 				$user_name_validate = $this->validate_user_name( $user_name, $form_settings_result );
 				if ( ! $user_name_validate['status'] ) {
+					Easy_Post_Submission_Client_Helper::cleanup_attachments( $content_attachment_ids );
 					wp_send_json_error( $user_name_validate['message'] );
 					wp_die();
 				}
 
 				$user_email_validate = $this->validate_user_email( $user_email, $form_settings_result );
 				if ( ! $user_email_validate['status'] ) {
+					Easy_Post_Submission_Client_Helper::cleanup_attachments( $content_attachment_ids );
 					wp_send_json_error( $user_email_validate['message'] );
 					wp_die();
 				}
@@ -1211,6 +1012,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 			$post_author_validate = $this->validate_post_author( $form_settings_result );
 
 			if ( ! $post_author_validate['status'] ) {
+				Easy_Post_Submission_Client_Helper::cleanup_attachments( $content_attachment_ids );
 				wp_send_json_error( $post_author_validate['message'] );
 				wp_die();
 			}
@@ -1229,6 +1031,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 					$featured_image_validate = $this->get_sanitized_featured_image( $_FILES['image'], $form_settings_result ); //phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 					if ( ! empty( $featured_image_validate['status'] ) ) {
+						Easy_Post_Submission_Client_Helper::cleanup_attachments( $content_attachment_ids );
 						wp_send_json_error( $featured_image_validate['message'] );
 						wp_die();
 					} else {
@@ -1239,6 +1042,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 				}
 
 				if ( ! $yes_post_featured && 'require' === $is_allow_featured && empty( $featured_image_file ) ) {
+					Easy_Post_Submission_Client_Helper::cleanup_attachments( $content_attachment_ids );
 					wp_send_json_error( esc_html__( 'A featured image is required for this submission. Please upload an image to proceed.', 'easy-post-submission' ) );
 					wp_die();
 				}
@@ -1253,12 +1057,9 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 			$excerpt     = $this->try_get_old_excerpt( $created_post_id, $excerpt, $form_settings_result );
 			$post_status = $this->get_post_status( $form_settings_result );
 
-			$post_images_handled = $this->try_convert_images_in_content( $content, $title );
-			$image_ids           = $post_images_handled['image_ids'];
-
 			$post_data = [
 				'post_title'    => esc_html( $title ),
-				'post_content'  => wp_kses_post( $post_images_handled['content'] ),
+				'post_content'  => $content,
 				'post_status'   => esc_attr( $post_status ),
 				'post_author'   => esc_attr( $post_author ),
 				'post_excerpt'  => esc_html( $excerpt ),
@@ -1275,12 +1076,26 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 			$post_id = $is_new_post ? wp_insert_post( $post_data ) : wp_update_post( $post_data );
 
 			if ( is_wp_error( $post_id ) ) {
+				// Clean up any uploaded content attachments before failing.
+				if ( ! empty( $content_attachment_ids ) ) {
+					Easy_Post_Submission_Client_Helper::cleanup_attachments( $content_attachment_ids );
+				}
 				return new WP_Error( 'post_creation_failed', esc_html__( 'Failed to create the post. Please contact the webmaster for assistance.', 'easy-post-submission' ), [ 'status' => 500 ] );
+			}
+
+			// Update attachment parents to link them to this post.
+			if ( ! empty( $content_attachment_ids ) ) {
+				foreach ( $content_attachment_ids as $attachment_id ) {
+					wp_update_post( [
+						'ID'          => $attachment_id,
+						'post_parent' => $post_id,
+					] );
+				}
 			}
 
 			$this->try_set_featured_image( $post_id, $form_settings_result, $featured_image_file, $is_remove_featured_image );
 
-			$this->try_store_images_from_post_content( $image_ids, $post_id, $title );
+			$this->try_store_images_from_post_content( $content_attachment_ids, $post_id, $title );
 
 			$this->update_author_info( $post_id, $user_name, $user_email, $form_settings_result );
 
@@ -1658,37 +1473,6 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 				$meta_key = $title . '_images';
 				update_post_meta( $post_id, $meta_key, $image_ids );
 			}
-		}
-
-		/**
-		 * Handles base64-encoded images in post content by uploading them and replacing base64 strings with image tags.
-		 *
-		 * This method scans the post content for base64-encoded images, uploads them, and returns the updated content
-		 * with image tags replacing the base64-encoded images. It also returns the IDs of the uploaded images.
-		 *
-		 * @param string $content The post content that may contain base64-encoded images.
-		 * @param string $title The title of the post, used when uploading the images.
-		 *
-		 * @return array An associative array containing:
-		 *               - 'content' (string) the updated post content with image tags replacing base64 images.
-		 *               - 'image_ids' (array) an array of IDs of the uploaded images.
-		 */
-		private function try_convert_images_in_content( $content, $title ) {
-			$base64_pattern = '/<img[^>]+src="image\/[^;]+;base64,([^"]+)"[^>]*>/i';
-
-			preg_match_all( $base64_pattern, $content, $base64_matches );
-
-			$image_properties = $this->upload_images_and_get_properties( $title, $base64_matches );
-			$image_urls       = $image_properties['image_urls'];
-			$image_ids        = $image_properties['image_ids'];
-
-			$image_tags = $this->create_image_tag_in_post( $image_urls );
-			$content    = $this->convert_base64_to_img_tag( $content, $base64_matches[0], $image_tags );
-
-			return [
-				'content'   => $content,
-				'image_ids' => $image_ids,
-			];
 		}
 
 		/**

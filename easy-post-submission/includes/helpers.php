@@ -539,5 +539,216 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Helper', false ) ) {
 
 			return 0;
 		}
+
+		/**
+		 * Process base64 images in content and upload them to the media library.
+		 *
+		 * Extracts base64-encoded images from HTML content, uploads them to WordPress
+		 * media library, and replaces the data URIs with the uploaded file URLs.
+		 *
+		 * @since 2.5.0
+		 *
+		 * @param string $content      The HTML content containing base64 images.
+		 * @param int    $post_id      Optional. The post ID to attach images to. Default 0.
+		 * @param array  $form_settings Optional. Form settings for validation. Default empty array.
+		 *
+		 * @return array {
+		 *     Array containing processed content and status.
+		 *
+		 *     @type bool   $success Whether all images were processed successfully.
+		 *     @type string $content The processed content with media URLs.
+		 *     @type string $message Error message if any image failed validation.
+		 *     @type array  $attachment_ids Array of created attachment IDs.
+		 * }
+		 */
+		public static function process_base64_images_in_content( $content, $post_id = 0, $form_settings = [] ) {
+			$result = [
+				'success'        => true,
+				'content'        => $content,
+				'message'        => '',
+				'attachment_ids' => [],
+			];
+
+			if ( empty( $content ) ) {
+				return $result;
+			}
+
+			// Match all base64 image data URIs in img src attributes.
+			$pattern = '/<img([^>]*?)src=["\']data:image\/(jpeg|jpg|png|gif|webp);base64,([^"\']+)["\']([^>]*)>/i';
+
+			if ( ! preg_match_all( $pattern, $content, $matches, PREG_SET_ORDER ) ) {
+				return $result;
+			}
+
+			// Get allowed file types and size limits from form settings.
+			$allowed_types    = [ 'jpeg', 'jpg', 'png', 'gif', 'webp' ];
+			$max_size_kb      = 0;
+			$max_images_count = 0;
+
+			if ( ! empty( $form_settings['form_fields']['content_images'] ) ) {
+				$image_settings = $form_settings['form_fields']['content_images'];
+
+				if ( ! empty( $image_settings['upload_file_size_limit'] ) ) {
+					$max_size_kb = absint( $image_settings['upload_file_size_limit'] );
+				}
+
+				if ( ! empty( $image_settings['maximum_images_count'] ) ) {
+					$max_images_count = absint( $image_settings['maximum_images_count'] );
+				}
+			}
+
+			// Check max images count.
+			if ( $max_images_count > 0 && count( $matches ) > $max_images_count ) {
+				$result['success'] = false;
+				$result['message'] = sprintf(
+					/* translators: %d: maximum number of images allowed */
+					esc_html__( 'Too many images. Maximum allowed: %d', 'easy-post-submission' ),
+					$max_images_count
+				);
+				return $result;
+			}
+
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+			require_once ABSPATH . 'wp-admin/includes/media.php';
+			require_once ABSPATH . 'wp-admin/includes/image.php';
+
+			$processed_content = $content;
+
+			foreach ( $matches as $match ) {
+				$full_tag    = $match[0];
+				$before_src  = $match[1];
+				$image_type  = strtolower( $match[2] );
+				$base64_data = $match[3];
+				$after_src   = $match[4];
+
+				// Normalize jpeg/jpg.
+				if ( 'jpg' === $image_type ) {
+					$image_type = 'jpeg';
+				}
+
+				// Validate file type.
+				if ( ! in_array( $image_type, $allowed_types, true ) ) {
+					self::cleanup_attachments( $result['attachment_ids'] );
+					$result['success']        = false;
+					$result['message']        = esc_html__( 'Invalid image type detected in content.', 'easy-post-submission' );
+					$result['attachment_ids'] = [];
+					return $result;
+				}
+
+				// Decode base64 data.
+				// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode -- Required to process user-uploaded base64 images from Quill editor.
+				$decoded_data = base64_decode( $base64_data, true );
+
+				if ( false === $decoded_data ) {
+					self::cleanup_attachments( $result['attachment_ids'] );
+					$result['success']        = false;
+					$result['message']        = esc_html__( 'Invalid image data detected in content.', 'easy-post-submission' );
+					$result['attachment_ids'] = [];
+					return $result;
+				}
+
+				// Check file size.
+				$file_size = strlen( $decoded_data );
+
+				if ( $max_size_kb > 0 && $file_size > ( $max_size_kb * 1024 ) ) {
+					self::cleanup_attachments( $result['attachment_ids'] );
+					$result['success'] = false;
+					$result['message'] = sprintf(
+						/* translators: %d: maximum file size in KB */
+						esc_html__( 'Image size exceeds the allowed limit of %d KB.', 'easy-post-submission' ),
+						$max_size_kb
+					);
+					$result['attachment_ids'] = [];
+					return $result;
+				}
+
+				// Verify MIME type matches the declared type.
+				$finfo     = new finfo( FILEINFO_MIME_TYPE );
+				$mime_type = $finfo->buffer( $decoded_data );
+
+				$expected_mime = 'image/' . $image_type;
+				if ( $mime_type !== $expected_mime && ! ( 'image/jpeg' === $mime_type && 'jpeg' === $image_type ) ) {
+					// Allow some flexibility for JPEG variants.
+					if ( ! in_array( $mime_type, [ 'image/jpeg', 'image/png', 'image/gif', 'image/webp' ], true ) ) {
+						self::cleanup_attachments( $result['attachment_ids'] );
+						$result['success']        = false;
+						$result['message']        = esc_html__( 'Image content does not match declared type.', 'easy-post-submission' );
+						$result['attachment_ids'] = [];
+						return $result;
+					}
+					// Update image type based on actual MIME.
+					$image_type = str_replace( 'image/', '', $mime_type );
+				}
+
+				// Generate unique filename.
+				$filename = 'rbsm-upload-' . wp_generate_uuid4() . '.' . ( 'jpeg' === $image_type ? 'jpg' : $image_type );
+
+				// Upload to WordPress.
+				$upload = wp_upload_bits( $filename, null, $decoded_data );
+
+				if ( ! empty( $upload['error'] ) ) {
+					self::cleanup_attachments( $result['attachment_ids'] );
+					$result['success']        = false;
+					$result['message']        = esc_html__( 'Failed to upload image.', 'easy-post-submission' );
+					$result['attachment_ids'] = [];
+					return $result;
+				}
+
+				// Create attachment.
+				$attachment_data = [
+					'post_mime_type' => $upload['type'],
+					'post_title'     => sanitize_file_name( pathinfo( $filename, PATHINFO_FILENAME ) ),
+					'post_content'   => '',
+					'post_status'    => 'inherit',
+				];
+
+				$attachment_id = wp_insert_attachment( $attachment_data, $upload['file'], $post_id );
+
+				if ( is_wp_error( $attachment_id ) ) {
+					// Clean up uploaded file and previous attachments on failure.
+					wp_delete_file( $upload['file'] );
+					self::cleanup_attachments( $result['attachment_ids'] );
+					$result['success']        = false;
+					$result['message']        = esc_html__( 'Failed to create media attachment.', 'easy-post-submission' );
+					$result['attachment_ids'] = [];
+					return $result;
+				}
+
+				// Generate attachment metadata.
+				$attachment_metadata = wp_generate_attachment_metadata( $attachment_id, $upload['file'] );
+				wp_update_attachment_metadata( $attachment_id, $attachment_metadata );
+
+				$result['attachment_ids'][] = $attachment_id;
+
+				// Replace base64 with uploaded URL in content.
+				$new_img_tag       = '<img' . $before_src . 'src="' . esc_url( $upload['url'] ) . '"' . $after_src . '>';
+				$processed_content = str_replace( $full_tag, $new_img_tag, $processed_content );
+			}
+
+			$result['content'] = $processed_content;
+
+			return $result;
+		}
+
+		/**
+		 * Clean up attachments created during content processing.
+		 *
+		 * Use this to rollback uploaded images if post creation fails.
+		 *
+		 * @since 2.5.0
+		 *
+		 * @param array $attachment_ids Array of attachment IDs to delete.
+		 *
+		 * @return void
+		 */
+		public static function cleanup_attachments( $attachment_ids ) {
+			if ( empty( $attachment_ids ) || ! is_array( $attachment_ids ) ) {
+				return;
+			}
+
+			foreach ( $attachment_ids as $attachment_id ) {
+				wp_delete_attachment( $attachment_id, true );
+			}
+		}
 	}
 }
