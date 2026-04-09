@@ -64,9 +64,13 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 		 * then sanitizes and processes various form fields before returning them
 		 * as an associative array.
 		 *
+		 *
+		 * @param bool $exclude_post_id Whether to exclude postId from collection. Default false.
+		 *                              Set to true for create operations to prevent arbitrary post updates.
+		 *
 		 * @return array An array containing sanitized submission data.
 		 */
-		private function get_sanitized_submission_data() {
+		private function get_sanitized_submission_data( $exclude_post_id = false ) {
 			$nonce = ( isset( $_POST['_nonce'] ) ) ? sanitize_key( $_POST['_nonce'] ) : '';
 
 			if ( empty( $nonce ) || false === wp_verify_nonce( $nonce, self::$nonce ) ) {
@@ -76,14 +80,17 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 
 			$data = [];
 
-			$data['id']              = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
-			$data['paged']           = isset( $_POST['paged'] ) ? absint( $_POST['paged'] ) : 0;
-			$data['formId']          = isset( $_POST['formId'] ) ? absint( $_POST['formId'] ) : 0;
-			$data['postId']          = isset( $_POST['postId'] ) ? absint( $_POST['postId'] ) : 0;
-			$data['title']           = isset( $_POST['title'] ) ? sanitize_text_field( wp_unslash( $_POST['title'] ) ) : '';
-			$data['excerpt']         = isset( $_POST['excerpt'] ) ? sanitize_text_field( wp_unslash( $_POST['excerpt'] ) ) : '';
-			$data['userEmail']       = isset( $_POST['userEmail'] ) ? sanitize_email( wp_unslash( $_POST['userEmail'] ) ) : '';
-			$data['userName']        = isset( $_POST['userName'] ) ? sanitize_text_field( wp_unslash( $_POST['userName'] ) ) : '';
+			$data['id']     = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
+			$data['paged']  = isset( $_POST['paged'] ) ? absint( $_POST['paged'] ) : 0;
+			$data['formId'] = isset( $_POST['formId'] ) ? absint( $_POST['formId'] ) : 0;
+
+			// Security: Only collect postId when explicitly allowed (for update operations).
+			// For create operations, postId is always 0 to prevent arbitrary post updates.
+			$data['postId']    = $exclude_post_id ? 0 : ( isset( $_POST['postId'] ) ? absint( $_POST['postId'] ) : 0 );
+			$data['title']     = isset( $_POST['title'] ) ? sanitize_text_field( wp_unslash( $_POST['title'] ) ) : '';
+			$data['excerpt']   = isset( $_POST['excerpt'] ) ? sanitize_text_field( wp_unslash( $_POST['excerpt'] ) ) : '';
+			$data['userEmail'] = isset( $_POST['userEmail'] ) ? sanitize_email( wp_unslash( $_POST['userEmail'] ) ) : '';
+			$data['userName']  = isset( $_POST['userName'] ) ? sanitize_text_field( wp_unslash( $_POST['userName'] ) ) : '';
 			// Content is intentionally NOT sanitized here to preserve base64 image data URIs.
 			// Sanitization with wp_kses_post() is applied AFTER base64 images are processed
 			// and uploaded to the media library in handle_data_to_submit_post() at line ~956.
@@ -863,12 +870,48 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 		 *
 		 * This function checks if the form submission data is valid, and if not, it returns an error.
 		 * It then calls the necessary methods to handle the data, create a post, and set the featured image.
+		 *
+		 * @since 2.5.0 Security: postId is excluded from data collection to prevent arbitrary post updates.
 		 */
 		public function create_post() {
-			$data = $this->get_sanitized_submission_data();
 
-			// The create_post action should only create NEW posts.
+			// Security: Pass true to exclude postId from collection - create_post must ONLY create new posts.
+			$data = $this->get_sanitized_submission_data( true );
+
+			// Defense in depth: explicitly set postId to 0 to ensure only new posts are created.
 			$data['postId'] = 0;
+
+			// Early permission check: verify form allows guest submissions if user is not logged in.
+			if ( ! is_user_logged_in() ) {
+
+				$form_id = $data['formId'];
+
+				if ( empty( $form_id ) ) {
+					wp_send_json_error( esc_html__( 'Form ID is required.', 'easy-post-submission' ) );
+					wp_die();
+				}
+
+				$form_settings = $this->get_form_settings_by_id( $form_id );
+
+				if ( false === $form_settings || null === $form_settings ) {
+					wp_send_json_error( esc_html__( 'Invalid form configuration.', 'easy-post-submission' ) );
+					wp_die();
+				}
+
+				$form_settings_result = json_decode( $form_settings->data, true );
+
+				if ( JSON_ERROR_NONE !== json_last_error() ) {
+					wp_send_json_error( esc_html__( 'Invalid form settings.', 'easy-post-submission' ) );
+					wp_die();
+				}
+
+				$author_access = (string) ( $form_settings_result['user_login']['author_access'] ?? 'only_logged_user' );
+
+				if ( 'only_logged_user' === $author_access ) {
+					wp_send_json_error( esc_html__( 'You must be logged in to submit posts.', 'easy-post-submission' ) );
+					wp_die();
+				}
+			}
 
 			$this->handle_data_to_submit_post( $data );
 		}
@@ -1070,6 +1113,12 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 
 			$is_new_post = empty( $created_post_id );
 			if ( ! $is_new_post ) {
+				// Defense in depth: verify user can edit this post before updating.
+				if ( ! is_user_logged_in() || ! current_user_can( 'edit_post', $created_post_id ) ) {
+					Easy_Post_Submission_Client_Helper::cleanup_attachments( $content_attachment_ids );
+					wp_send_json_error( esc_html__( 'You are not allowed to edit this post.', 'easy-post-submission' ) );
+					wp_die();
+				}
 				$post_data['ID'] = $created_post_id;
 			}
 
@@ -1086,10 +1135,12 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 			// Update attachment parents to link them to this post.
 			if ( ! empty( $content_attachment_ids ) ) {
 				foreach ( $content_attachment_ids as $attachment_id ) {
-					wp_update_post( [
-						'ID'          => $attachment_id,
-						'post_parent' => $post_id,
-					] );
+					wp_update_post(
+						[
+							'ID'          => $attachment_id,
+							'post_parent' => $post_id,
+						]
+					);
 				}
 			}
 
@@ -1655,6 +1706,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 		 *
 		 */
 		public function get_user_posts() {
+
 			$this->validate_logged_user();
 			$data = $this->get_sanitized_submission_data();
 
