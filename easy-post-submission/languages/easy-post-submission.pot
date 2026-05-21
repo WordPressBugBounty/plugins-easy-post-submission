@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: easy-post-submission\n"
-"POT-Creation-Date: 2026-03-16 13:12+0700\n"
+"POT-Creation-Date: 2026-05-21 12:34+0700\n"
 "PO-Revision-Date: 2017-07-16 09:08+0700\n"
 "Last-Translator: \n"
 "Language-Team: ThemeRuby <support@themeruby.com>\n"
@@ -36,164 +36,164 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: admin/ajax-handler.php:120
+#: admin/ajax-handler.php:70
 msgid "You are not allowed to access this feature."
 msgstr ""
 
-#: admin/ajax-handler.php:137 admin/ajax-handler.php:283 admin/ajax-handler.php:395 admin/ajax-handler.php:817
-#: admin/ajax-handler.php:877 admin/ajax-handler.php:923 admin/ajax-handler.php:966 admin/ajax-handler.php:997
-#: admin/ajax-handler.php:1028 admin/ajax-handler.php:1141 admin/ajax-handler.php:1168 includes/client-ajax-handler.php:73
+#: admin/ajax-handler.php:87 admin/ajax-handler.php:233 admin/ajax-handler.php:345 admin/ajax-handler.php:767
+#: admin/ajax-handler.php:827 admin/ajax-handler.php:873 admin/ajax-handler.php:916 admin/ajax-handler.php:947
+#: admin/ajax-handler.php:978 admin/ajax-handler.php:1091 admin/ajax-handler.php:1118 includes/client-ajax-handler.php:77
 msgid "Invalid nonce."
 msgstr ""
 
-#: admin/ajax-handler.php:163 includes/description-strings.php:335
+#: admin/ajax-handler.php:113 includes/description-strings.php:339
 msgid "Submit a Post"
 msgstr ""
 
-#: admin/ajax-handler.php:173
+#: admin/ajax-handler.php:123
 msgid "Review and Manage Your Posts"
 msgstr ""
 
-#: admin/ajax-handler.php:183
+#: admin/ajax-handler.php:133
 msgid "Edit Your Submission"
 msgstr ""
 
-#: admin/ajax-handler.php:194 includes/description-strings.php:385
+#: admin/ajax-handler.php:144 includes/description-strings.php:390
 msgid "Login"
 msgstr ""
 
-#: admin/ajax-handler.php:204 includes/account-shortcodes.php:830 includes/account-shortcodes.php:922
-#: includes/description-strings.php:222 includes/description-strings.php:384
+#: admin/ajax-handler.php:154 includes/account-shortcodes.php:830 includes/account-shortcodes.php:922
+#: includes/description-strings.php:222 includes/description-strings.php:389
 msgid "Register"
 msgstr ""
 
-#: admin/ajax-handler.php:260
+#: admin/ajax-handler.php:210
 msgid "Could not create the pages"
 msgstr ""
 
-#: admin/ajax-handler.php:290
+#: admin/ajax-handler.php:240
 msgid "No data received to save. Please try again."
 msgstr ""
 
-#: admin/ajax-handler.php:297 admin/ajax-handler.php:833
+#: admin/ajax-handler.php:247 admin/ajax-handler.php:783
 msgid "Data invalid."
 msgstr ""
 
-#: admin/ajax-handler.php:305
+#: admin/ajax-handler.php:255
 msgid "Title or data is missing."
 msgstr ""
 
-#: admin/ajax-handler.php:310
+#: admin/ajax-handler.php:260
 msgid "The form title already exists. Please choose a different title."
 msgstr ""
 
-#: admin/ajax-handler.php:318 admin/ajax-handler.php:862
+#: admin/ajax-handler.php:268 admin/ajax-handler.php:812
 msgid "Save successfully!"
 msgstr ""
 
-#: admin/ajax-handler.php:320
+#: admin/ajax-handler.php:270
 msgid "Failed to save to the database. Please temporarily deactivate the plugin and activate it again."
 msgstr ""
 
-#: admin/ajax-handler.php:408
+#: admin/ajax-handler.php:358
 msgid "No records found"
 msgstr ""
 
-#: admin/ajax-handler.php:433
+#: admin/ajax-handler.php:383
 msgid "Invalid data"
 msgstr ""
 
-#: admin/ajax-handler.php:446
+#: admin/ajax-handler.php:396
 msgid "Data is missing some fields!"
 msgstr ""
 
-#: admin/ajax-handler.php:459
+#: admin/ajax-handler.php:409
 msgid "General setting data is invalid."
 msgstr ""
 
-#: admin/ajax-handler.php:485
+#: admin/ajax-handler.php:435
 msgid "User login setting data is invalid."
 msgstr ""
 
-#: admin/ajax-handler.php:571
+#: admin/ajax-handler.php:521
 msgid "Form fields setting data is invalid."
 msgstr ""
 
-#: admin/ajax-handler.php:615
+#: admin/ajax-handler.php:565
 msgid "Security setting data is invalid."
 msgstr ""
 
-#: admin/ajax-handler.php:654
+#: admin/ajax-handler.php:604
 msgid "Email setting data is invalid."
 msgstr ""
 
-#: admin/ajax-handler.php:688
+#: admin/ajax-handler.php:638
 msgid "valid data before saving!"
 msgstr ""
 
-#: admin/ajax-handler.php:827 admin/ajax-handler.php:887 admin/ajax-handler.php:1035 admin/ajax-handler.php:1175
+#: admin/ajax-handler.php:777 admin/ajax-handler.php:837 admin/ajax-handler.php:985 admin/ajax-handler.php:1125
 msgid "Form data is incorrect or missing."
 msgstr ""
 
-#: admin/ajax-handler.php:841
+#: admin/ajax-handler.php:791
 msgid "Id or new data is missing."
 msgstr ""
 
-#: admin/ajax-handler.php:864
+#: admin/ajax-handler.php:814
 msgid "Save to Database failed."
 msgstr ""
 
-#: admin/ajax-handler.php:893 admin/ajax-handler.php:1041 admin/ajax-handler.php:1182
+#: admin/ajax-handler.php:843 admin/ajax-handler.php:991 admin/ajax-handler.php:1132
 msgid "Json data invalid."
 msgstr ""
 
-#: admin/ajax-handler.php:899
+#: admin/ajax-handler.php:849
 msgid "ID is missing"
 msgstr ""
 
-#: admin/ajax-handler.php:905
+#: admin/ajax-handler.php:855
 msgid "Removed successfully!"
 msgstr ""
 
-#: admin/ajax-handler.php:1070
+#: admin/ajax-handler.php:1020
 msgid "restore data success"
 msgstr ""
 
-#: admin/ajax-handler.php:1095
+#: admin/ajax-handler.php:1045
 msgid "ID or Title is missing"
 msgstr ""
 
-#: admin/ajax-handler.php:1104
+#: admin/ajax-handler.php:1054
 msgid "Form data is missing"
 msgstr ""
 
-#: admin/ajax-handler.php:1195
+#: admin/ajax-handler.php:1145
 msgid "Post manager settings updated successfully."
 msgstr ""
 
-#: admin/ajax-handler.php:1218
+#: admin/ajax-handler.php:1168
 msgid "Error with form data. Please reload the page and try saving the changes again."
 msgstr ""
 
-#: admin/ajax-handler.php:1226
+#: admin/ajax-handler.php:1176
 msgid "The Post Submission Edit Page URL is missing!"
 msgstr ""
 
-#: admin/ajax-handler.php:1234
+#: admin/ajax-handler.php:1184
 msgid "The Login Action Choice is missing!"
 msgstr ""
 
-#: admin/ajax-handler.php:1242
+#: admin/ajax-handler.php:1192
 msgid "Login Notification Title is missing!"
 msgstr ""
 
-#: admin/ajax-handler.php:1250
+#: admin/ajax-handler.php:1200
 msgid "Login Notification Message is missing!"
 msgstr ""
 
-#: admin/ajax-handler.php:1265 admin/ajax-handler.php:1277 admin/ajax-handler.php:1286 admin/ajax-handler.php:1294
-#: admin/ajax-handler.php:1302 admin/ajax-handler.php:1320 admin/ajax-handler.php:1328 admin/ajax-handler.php:1336
-#: admin/ajax-handler.php:1344 admin/ajax-handler.php:1352
+#: admin/ajax-handler.php:1215 admin/ajax-handler.php:1227 admin/ajax-handler.php:1236 admin/ajax-handler.php:1244
+#: admin/ajax-handler.php:1252 admin/ajax-handler.php:1270 admin/ajax-handler.php:1278 admin/ajax-handler.php:1286
+#: admin/ajax-handler.php:1294 admin/ajax-handler.php:1302
 msgid "Data is invalid."
 msgstr ""
 
@@ -209,7 +209,7 @@ msgstr ""
 msgid "Please complete the reCAPTCHA verification."
 msgstr ""
 
-#: includes/account-shortcodes.php:259 includes/client-ajax-handler.php:547
+#: includes/account-shortcodes.php:259 includes/client-ajax-handler.php:365
 msgid "Unable to verify reCAPTCHA. Please try again."
 msgstr ""
 
@@ -229,7 +229,7 @@ msgstr ""
 msgid "Please complete the Turnstile verification."
 msgstr ""
 
-#: includes/account-shortcodes.php:321 includes/client-ajax-handler.php:617
+#: includes/account-shortcodes.php:321 includes/client-ajax-handler.php:435
 msgid "Unable to verify Turnstile. Please try again."
 msgstr ""
 
@@ -334,314 +334,304 @@ msgstr ""
 msgid "You need to log in before do this action."
 msgstr ""
 
-#: includes/client-ajax-handler.php:119
+#: includes/client-ajax-handler.php:129
 msgid "Post ID is missing."
 msgstr ""
 
-#: includes/client-ajax-handler.php:125
+#: includes/client-ajax-handler.php:135
 msgid "Sorry, you are not allowed to delete this post."
 msgstr ""
 
-#: includes/client-ajax-handler.php:135
+#: includes/client-ajax-handler.php:145
 #, php-format
 msgid "The post with post ID: %d has been deleted."
 msgstr ""
 
-#: includes/client-ajax-handler.php:138
+#: includes/client-ajax-handler.php:148
 #, php-format
 msgid "Post ID %d does not exist."
 msgstr ""
 
-#: includes/client-ajax-handler.php:256
-msgid "Invalid image format detected."
-msgstr ""
-
-#: includes/client-ajax-handler.php:265
-msgid "File type not allowed. Supported formats: JPG, PNG, GIF, WEBP."
-msgstr ""
-
-#: includes/client-ajax-handler.php:275
-msgid "Invalid image data."
-msgstr ""
-
-#: includes/client-ajax-handler.php:296
-msgid ""
-"Failed to process some images in the content. Please make sure you are using supported image file types and try again."
-msgstr ""
-
-#: includes/client-ajax-handler.php:305
-msgid "Failed to handle the attachment image URL in the post content. Please contact the webmaster for assistance."
-msgstr ""
-
-#: includes/client-ajax-handler.php:410
+#: includes/client-ajax-handler.php:228
 msgid "The title already exists."
 msgstr ""
 
-#: includes/client-ajax-handler.php:416
+#: includes/client-ajax-handler.php:234
 msgid "Valid title!"
 msgstr ""
 
-#: includes/client-ajax-handler.php:466
+#: includes/client-ajax-handler.php:284
 msgid "Captcha is disabled."
 msgstr ""
 
-#: includes/client-ajax-handler.php:481
+#: includes/client-ajax-handler.php:299
 msgid "No captcha configured."
 msgstr ""
 
-#: includes/client-ajax-handler.php:513
+#: includes/client-ajax-handler.php:331
 msgid "reCAPTCHA is not configured. Please add your reCAPTCHA keys in the Global Captcha Settings."
 msgstr ""
 
-#: includes/client-ajax-handler.php:514
+#: includes/client-ajax-handler.php:332
 msgid "reCAPTCHA verification is not available at this time."
 msgstr ""
 
-#: includes/client-ajax-handler.php:526
+#: includes/client-ajax-handler.php:344
 msgid "reCAPTCHA response is missing."
 msgstr ""
 
-#: includes/client-ajax-handler.php:557
+#: includes/client-ajax-handler.php:375
 msgid "Valid reCAPTCHA."
 msgstr ""
 
-#: includes/client-ajax-handler.php:562
+#: includes/client-ajax-handler.php:380
 msgid "Invalid reCAPTCHA."
 msgstr ""
 
-#: includes/client-ajax-handler.php:583
+#: includes/client-ajax-handler.php:401
 msgid "Turnstile is not configured. Please add your Turnstile keys in the Global Captcha Settings."
 msgstr ""
 
-#: includes/client-ajax-handler.php:584
+#: includes/client-ajax-handler.php:402
 msgid "Turnstile verification is not available at this time."
 msgstr ""
 
-#: includes/client-ajax-handler.php:596
+#: includes/client-ajax-handler.php:414
 msgid "Turnstile response is missing."
 msgstr ""
 
-#: includes/client-ajax-handler.php:627
+#: includes/client-ajax-handler.php:445
 msgid "Valid Turnstile."
 msgstr ""
 
-#: includes/client-ajax-handler.php:632
+#: includes/client-ajax-handler.php:450
 msgid "Invalid Turnstile verification."
 msgstr ""
 
-#: includes/client-ajax-handler.php:653
+#: includes/client-ajax-handler.php:471
 msgid "Challenge is disabled."
 msgstr ""
 
-#: includes/client-ajax-handler.php:664
+#: includes/client-ajax-handler.php:482
 msgid "Challenge answer is not configured."
 msgstr ""
 
-#: includes/client-ajax-handler.php:672
+#: includes/client-ajax-handler.php:490
 msgid "Please answer the challenge question."
 msgstr ""
 
-#: includes/client-ajax-handler.php:680
+#: includes/client-ajax-handler.php:498
 msgid "Challenge answer is correct."
 msgstr ""
 
-#: includes/client-ajax-handler.php:685
+#: includes/client-ajax-handler.php:503
 msgid "Challenge answer is incorrect. Please try again."
 msgstr ""
 
-#: includes/client-ajax-handler.php:710
+#: includes/client-ajax-handler.php:528
 msgid "The post title is not allowed!"
 msgstr ""
 
-#: includes/client-ajax-handler.php:715
+#: includes/client-ajax-handler.php:533
 msgid "Title is missing!"
 msgstr ""
 
-#: includes/client-ajax-handler.php:741
+#: includes/client-ajax-handler.php:559
 msgid "The post excerpt is not allowed!"
 msgstr ""
 
-#: includes/client-ajax-handler.php:746
+#: includes/client-ajax-handler.php:564
 msgid "Post excerpt is missing!"
 msgstr ""
 
-#: includes/client-ajax-handler.php:752
+#: includes/client-ajax-handler.php:570
 msgid "Valid excerpt!"
 msgstr ""
 
-#: includes/client-ajax-handler.php:781
+#: includes/client-ajax-handler.php:598
 #, php-format
 msgid "You have reached the maximum limit of %d images."
 msgstr ""
 
-#: includes/client-ajax-handler.php:795
+#: includes/client-ajax-handler.php:604
 msgid "Valid images."
 msgstr ""
 
-#: includes/client-ajax-handler.php:824
-#, php-format
-msgid "The size %1$s of the image has exceeded the allowed limit, which is %2$dKB."
-msgstr ""
-
-#: includes/client-ajax-handler.php:831
-msgid "Valid image base64."
-msgstr ""
-
-#: includes/client-ajax-handler.php:870
+#: includes/client-ajax-handler.php:643
 msgid "The user name is not allowed!"
 msgstr ""
 
-#: includes/client-ajax-handler.php:875
+#: includes/client-ajax-handler.php:648
 msgid "User name is missing!"
 msgstr ""
 
-#: includes/client-ajax-handler.php:881
+#: includes/client-ajax-handler.php:654
 msgid "Valid user name!"
 msgstr ""
 
-#: includes/client-ajax-handler.php:905
+#: includes/client-ajax-handler.php:678
 msgid "User email is not allowed!"
 msgstr ""
 
-#: includes/client-ajax-handler.php:910
+#: includes/client-ajax-handler.php:683
 msgid "User email is missing!"
 msgstr ""
 
-#: includes/client-ajax-handler.php:918 includes/client-ajax-handler.php:932
+#: includes/client-ajax-handler.php:691 includes/client-ajax-handler.php:704
 msgid "Valid user email!"
 msgstr ""
 
-#: includes/client-ajax-handler.php:926
+#: includes/client-ajax-handler.php:698
 msgid "User email is invalid."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1023
+#: includes/client-ajax-handler.php:795
 msgid "There was an error uploading the file. Please try again."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1032
+#: includes/client-ajax-handler.php:805
 msgid "Invalid file or extension. Allowed extensions: JPG, JPEG, PNG, GIF, WEBP."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1046
+#: includes/client-ajax-handler.php:814
+msgid "Invalid file type. The file content does not match an allowed image format."
+msgstr ""
+
+#: includes/client-ajax-handler.php:828
 msgid "Image size exceeds the allowed limit! Please choose an image with a smaller size."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1067
+#: includes/client-ajax-handler.php:849
 msgid "Post ID is null"
 msgstr ""
 
-#: includes/client-ajax-handler.php:1073
+#: includes/client-ajax-handler.php:855
 msgid "Post was not existed."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1081
+#: includes/client-ajax-handler.php:861 includes/client-ajax-handler.php:1119
 msgid "You are not allowed to edit this post."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1141
+#: includes/client-ajax-handler.php:890
+msgid "Form ID is required."
+msgstr ""
+
+#: includes/client-ajax-handler.php:897
+msgid "Invalid form configuration."
+msgstr ""
+
+#: includes/client-ajax-handler.php:904
+msgid "Invalid form settings."
+msgstr ""
+
+#: includes/client-ajax-handler.php:911
+msgid "You must be logged in to submit posts."
+msgstr ""
+
+#: includes/client-ajax-handler.php:960
 msgid "Error processing the post due to form settings ID. Please contact the webmaster for assistance."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1147
+#: includes/client-ajax-handler.php:966
 msgid "Form settings could not be found. Please contact the webmaster for assistance."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1153
+#: includes/client-ajax-handler.php:972
 msgid "An error occurred with the form settings data. Please contact the webmaster for assistance."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1170
+#: includes/client-ajax-handler.php:1009
 msgid "Please provide the content for your post before submitting."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1242
+#: includes/client-ajax-handler.php:1089
 msgid "A featured image is required for this submission. Please upload an image to proceed."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1278
+#: includes/client-ajax-handler.php:1132
 msgid "Failed to create the post. Please contact the webmaster for assistance."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1297
+#: includes/client-ajax-handler.php:1163
 msgid "Your post has been submitted successfully!"
 msgstr ""
 
-#: includes/client-ajax-handler.php:1435 includes/client-ajax-handler.php:1436 includes/client-ajax-handler.php:1482
-#: includes/client-ajax-handler.php:1483 includes/client-ajax-handler.php:1529 includes/client-ajax-handler.php:1530
-#: includes/client-ajax-handler.php:1567 includes/client-ajax-handler.php:1569
+#: includes/client-ajax-handler.php:1301 includes/client-ajax-handler.php:1302 includes/client-ajax-handler.php:1348
+#: includes/client-ajax-handler.php:1349 includes/client-ajax-handler.php:1395 includes/client-ajax-handler.php:1396
+#: includes/client-ajax-handler.php:1433 includes/client-ajax-handler.php:1435
 msgid "The post "
 msgstr ""
 
-#: includes/client-ajax-handler.php:1435 includes/client-ajax-handler.php:1482
+#: includes/client-ajax-handler.php:1301 includes/client-ajax-handler.php:1348
 msgid " has just submitted."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1436 includes/client-ajax-handler.php:1483
+#: includes/client-ajax-handler.php:1302 includes/client-ajax-handler.php:1349
 msgid " has just submitted. Please check at: "
 msgstr ""
 
-#: includes/client-ajax-handler.php:1449
+#: includes/client-ajax-handler.php:1315
 msgid "Admin mail was sent successfully."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1451
+#: includes/client-ajax-handler.php:1317
 msgid "Admin mail sending failed."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1479
+#: includes/client-ajax-handler.php:1345
 msgid "The user email is empty"
 msgstr ""
 
-#: includes/client-ajax-handler.php:1498 includes/client-ajax-handler.php:1543 includes/client-ajax-handler.php:1582
+#: includes/client-ajax-handler.php:1364 includes/client-ajax-handler.php:1409 includes/client-ajax-handler.php:1448
 msgid "User mail was sent successfully."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1500 includes/client-ajax-handler.php:1545 includes/client-ajax-handler.php:1584
+#: includes/client-ajax-handler.php:1366 includes/client-ajax-handler.php:1411 includes/client-ajax-handler.php:1450
 msgid "User mail sending failed."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1526 includes/client-ajax-handler.php:1564
+#: includes/client-ajax-handler.php:1392 includes/client-ajax-handler.php:1430
 msgid "The user email address is empty."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1529
+#: includes/client-ajax-handler.php:1395
 msgid " has just published."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1530
+#: includes/client-ajax-handler.php:1396
 msgid " has just published. Please check at: "
 msgstr ""
 
-#: includes/client-ajax-handler.php:1567
+#: includes/client-ajax-handler.php:1433
 msgid " has just trashed."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1569
+#: includes/client-ajax-handler.php:1435
 msgid " has just trashed. Please check at: "
 msgstr ""
 
-#: includes/client-ajax-handler.php:1717
+#: includes/client-ajax-handler.php:1552
 msgid "You need to log in before submitting a post."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1725
+#: includes/client-ajax-handler.php:1560
 msgid "The default author is not configured. Please contact the webmaster for assistance."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1733
+#: includes/client-ajax-handler.php:1568
 msgid "An error occurred while trying to assign the author. Please contact the webmaster for assistance"
 msgstr ""
 
-#: includes/client-ajax-handler.php:1740
+#: includes/client-ajax-handler.php:1575
 msgid "The author is valid and assigned."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1880
+#: includes/client-ajax-handler.php:1716
 msgid "Page number is empty!"
 msgstr ""
 
-#: includes/client-ajax-handler.php:1970
+#: includes/client-ajax-handler.php:1806
 msgid "No more posts found."
 msgstr ""
 
@@ -684,7 +674,7 @@ msgstr ""
 msgid "Save New Form"
 msgstr ""
 
-#: includes/description-strings.php:28 includes/description-strings.php:322
+#: includes/description-strings.php:28 includes/description-strings.php:326
 msgid "Cancel"
 msgstr ""
 
@@ -708,7 +698,7 @@ msgstr ""
 msgid "Your Forms"
 msgstr ""
 
-#: includes/description-strings.php:35 includes/description-strings.php:319
+#: includes/description-strings.php:35 includes/description-strings.php:323
 msgid "Delete"
 msgstr ""
 
@@ -844,7 +834,7 @@ msgstr ""
 msgid "Requirement for the user email."
 msgstr ""
 
-#: includes/description-strings.php:68 includes/description-strings.php:323
+#: includes/description-strings.php:68 includes/description-strings.php:327
 msgid "Post Title"
 msgstr ""
 
@@ -869,7 +859,7 @@ msgid ""
 "Select the layout for the content editor: use a WYSIWYG editor for visual editing or choose raw HTML for manual input."
 msgstr ""
 
-#: includes/description-strings.php:74 includes/description-strings.php:361
+#: includes/description-strings.php:74 includes/description-strings.php:365
 msgid "Featured Image"
 msgstr ""
 
@@ -921,7 +911,7 @@ msgstr ""
 msgid "The default image to use if no featured image is provided."
 msgstr ""
 
-#: includes/description-strings.php:87 includes/description-strings.php:324 includes/description-strings.php:354
+#: includes/description-strings.php:87 includes/description-strings.php:328 includes/description-strings.php:358
 msgid "Categories"
 msgstr ""
 
@@ -1257,7 +1247,7 @@ msgstr ""
 msgid "Settings have been saved successfully."
 msgstr ""
 
-#: includes/description-strings.php:170 includes/description-strings.php:318
+#: includes/description-strings.php:170 includes/description-strings.php:322
 msgid "OK"
 msgstr ""
 
@@ -1558,7 +1548,7 @@ msgstr ""
 msgid "Login Required to Access Posts"
 msgstr ""
 
-#: includes/description-strings.php:253 includes/description-strings.php:389
+#: includes/description-strings.php:253 includes/description-strings.php:394
 msgid "You need to be logged in to view all posts. Please log in to continue."
 msgstr ""
 
@@ -1566,7 +1556,7 @@ msgstr ""
 msgid "Login Required to Edit Post"
 msgstr ""
 
-#: includes/description-strings.php:255 includes/description-strings.php:391
+#: includes/description-strings.php:255 includes/description-strings.php:396
 msgid "You must be logged in to edit this post. Please log in to proceed."
 msgstr ""
 
@@ -1707,350 +1697,392 @@ msgid "Learn More"
 msgstr ""
 
 #: includes/description-strings.php:294
-msgid "Useful shortcodes for setup"
+msgid "Recommended Plugins"
 msgstr ""
 
 #: includes/description-strings.php:295
+msgid "Free plugins from ThemeRuby that work great together."
+msgstr ""
+
+#: includes/description-strings.php:298
+msgid "Useful shortcodes for setup"
+msgstr ""
+
+#: includes/description-strings.php:299
 msgid "Display the submit post form on the frontend"
 msgstr ""
 
-#: includes/description-strings.php:296
+#: includes/description-strings.php:300
 msgid ""
 "Place the shortcode on a page, block, or widget where you want to display the submit form. Change the ID to match your "
 "form shortcode."
 msgstr ""
 
-#: includes/description-strings.php:297
+#: includes/description-strings.php:301
 msgid "Display the list of post submissions for logged-in users"
 msgstr ""
 
-#: includes/description-strings.php:298
+#: includes/description-strings.php:302
 msgid "Place the shortcode on a page where you want to display the user profile posts."
 msgstr ""
 
-#: includes/description-strings.php:299
+#: includes/description-strings.php:303
 msgid "Display the edit post submission for logged-in users"
 msgstr ""
 
-#: includes/description-strings.php:300
+#: includes/description-strings.php:304
 msgid "Place the shortcode on a page where the logged-in user can edit their submission."
 msgstr ""
 
-#: includes/description-strings.php:301
+#: includes/description-strings.php:305
 msgid "Full documentation"
 msgstr ""
 
-#: includes/description-strings.php:320
+#: includes/description-strings.php:324
 msgid "Confirm Delete"
 msgstr ""
 
-#: includes/description-strings.php:321
+#: includes/description-strings.php:325
 msgid "Submit"
 msgstr ""
 
-#: includes/description-strings.php:325
+#: includes/description-strings.php:329
 msgid "Created"
 msgstr ""
 
-#: includes/description-strings.php:326
+#: includes/description-strings.php:330
 msgid "Status"
 msgstr ""
 
-#: includes/description-strings.php:327
+#: includes/description-strings.php:331
 msgid "Views"
 msgstr ""
 
-#: includes/description-strings.php:328
+#: includes/description-strings.php:332
 msgid "Actions"
 msgstr ""
 
-#: includes/description-strings.php:329
+#: includes/description-strings.php:333
 msgid "It looks like there are no posts to display yet!"
 msgstr ""
 
-#: includes/description-strings.php:330
+#: includes/description-strings.php:334
 msgid "We would love to see your contributions! Please submit your posts to showcase them here."
 msgstr ""
 
-#: includes/description-strings.php:331
+#: includes/description-strings.php:335
 msgid "Please Log In to Continue"
 msgstr ""
 
-#: includes/description-strings.php:332
+#: includes/description-strings.php:336
 msgid "Load More Posts"
 msgstr ""
 
-#: includes/description-strings.php:333
+#: includes/description-strings.php:337
 msgid "Your Posts"
 msgstr ""
 
-#: includes/description-strings.php:334
+#: includes/description-strings.php:338
 msgid "Edit Post"
 msgstr ""
 
-#: includes/description-strings.php:337
+#: includes/description-strings.php:341
 #, php-format
 msgid "%s was deleted successfully."
 msgstr ""
 
-#: includes/description-strings.php:339
+#: includes/description-strings.php:343
 #, php-format
 msgid "Are you sure you want to delete the post: %s ?"
 msgstr ""
 
-#: includes/description-strings.php:340
+#: includes/description-strings.php:344
 msgid "Your Name"
 msgstr ""
 
-#: includes/description-strings.php:341
+#: includes/description-strings.php:345
 msgid "Enter your full name as you would like it to appear."
 msgstr ""
 
-#: includes/description-strings.php:342
+#: includes/description-strings.php:346
 msgid "Your Email"
 msgstr ""
 
-#: includes/description-strings.php:343
+#: includes/description-strings.php:347
 msgid ""
 "Your email address will not be publicly displayed. It is used solely for administrative purposes and to contact you "
 "about your post."
 msgstr ""
 
-#: includes/description-strings.php:344
+#: includes/description-strings.php:348
 msgid "Competition Challenge"
 msgstr ""
 
-#: includes/description-strings.php:345
+#: includes/description-strings.php:349
 msgid "Please answer the question:"
 msgstr ""
 
-#: includes/description-strings.php:346
+#: includes/description-strings.php:350
 msgid "The answer provided is invalid. Please enter a valid response."
 msgstr ""
 
-#: includes/description-strings.php:347
+#: includes/description-strings.php:351
 msgid "Add Title"
 msgstr ""
 
-#: includes/description-strings.php:348
+#: includes/description-strings.php:352
 msgid ""
 "Short and sweet is the way to go! Try to keep your post title between 50 and 70 characters to make it more engaging."
 msgstr ""
 
-#: includes/description-strings.php:349
+#: includes/description-strings.php:353
 msgid "Add Excerpt"
 msgstr ""
 
-#: includes/description-strings.php:350
+#: includes/description-strings.php:354
 msgid ""
 "Aim for a length of about 20 to 55 words. A concise excerpt captures the essence of your post without giving everything "
 "away."
 msgstr ""
 
-#: includes/description-strings.php:351
+#: includes/description-strings.php:355
 msgid "Add Post Content"
 msgstr ""
 
-#: includes/description-strings.php:352
+#: includes/description-strings.php:356
 msgid "Start writing your content here..."
 msgstr ""
 
-#: includes/description-strings.php:353
+#: includes/description-strings.php:357
 msgid "Begin with a captivating introduction that grabs your readers attention and gives them a reason to keep reading."
 msgstr ""
 
-#: includes/description-strings.php:355
+#: includes/description-strings.php:359
 msgid "Choose Categories"
 msgstr ""
 
-#: includes/description-strings.php:356
+#: includes/description-strings.php:360
 msgid "Choose categories that accurately reflect your post content."
 msgstr ""
 
-#: includes/description-strings.php:357
+#: includes/description-strings.php:361
 msgid "Post Tags"
 msgstr ""
 
-#: includes/description-strings.php:358
+#: includes/description-strings.php:362
 msgid "Add Tags"
 msgstr ""
 
-#: includes/description-strings.php:359
+#: includes/description-strings.php:363
 msgid "Choose Tags"
 msgstr ""
 
-#: includes/description-strings.php:360
+#: includes/description-strings.php:364
 msgid "Choose tags that are most relevant to your post content."
 msgstr ""
 
-#: includes/description-strings.php:362
+#: includes/description-strings.php:366
 msgid ""
 "A relevant, high-quality image effectively conveys the essence of your content and captures the attention of your "
 "audience."
 msgstr ""
 
-#: includes/description-strings.php:363
+#: includes/description-strings.php:367
 msgid "Select an Image"
 msgstr ""
 
-#: includes/description-strings.php:364
+#: includes/description-strings.php:368
 msgid "Edit Featured Image"
 msgstr ""
 
-#: includes/description-strings.php:365
-msgid "Submit Post"
-msgstr ""
-
-#: includes/description-strings.php:366
-msgid "Update Post"
-msgstr ""
-
-#: includes/description-strings.php:367
-msgid "An answer is required!"
-msgstr ""
-
-#: includes/description-strings.php:368
-msgid "reCAPTCHA was not verified"
-msgstr ""
-
 #: includes/description-strings.php:369
-msgid "Captcha verification failed"
+msgid "Click to replace"
 msgstr ""
 
 #: includes/description-strings.php:370
-msgid "Failed to load Turnstile"
+msgid "Submit Post"
 msgstr ""
 
 #: includes/description-strings.php:371
-msgid "Maximum Images Upload"
+msgid "Update Post"
+msgstr ""
+
+#: includes/description-strings.php:372
+msgid "An answer is required!"
 msgstr ""
 
 #: includes/description-strings.php:373
+msgid "reCAPTCHA was not verified"
+msgstr ""
+
+#: includes/description-strings.php:374
+msgid "Captcha verification failed"
+msgstr ""
+
+#: includes/description-strings.php:375
+msgid "Failed to load Turnstile"
+msgstr ""
+
+#: includes/description-strings.php:376
+msgid "Maximum Images Upload"
+msgstr ""
+
+#: includes/description-strings.php:378
 #, php-format
 msgid "You have reached the maximum limit of %s images."
 msgstr ""
 
-#: includes/description-strings.php:374
+#: includes/description-strings.php:379
 msgid "Updating"
 msgstr ""
 
-#: includes/description-strings.php:375
+#: includes/description-strings.php:380
 msgid "Submitting"
 msgstr ""
 
-#: includes/description-strings.php:377
+#: includes/description-strings.php:382
 #, php-format
 msgid "%s was updated successfully."
 msgstr ""
 
-#: includes/description-strings.php:379
+#: includes/description-strings.php:384
 #, php-format
 msgid "%s was added successfully."
 msgstr ""
 
-#: includes/description-strings.php:380
+#: includes/description-strings.php:385
 msgid "Post updated"
 msgstr ""
 
-#: includes/description-strings.php:381
+#: includes/description-strings.php:386
 msgid "Post submitted"
 msgstr ""
 
-#: includes/description-strings.php:382
+#: includes/description-strings.php:387
 msgid "Update failed"
 msgstr ""
 
-#: includes/description-strings.php:383
+#: includes/description-strings.php:388
 msgid "Submission failed"
 msgstr ""
 
-#: includes/description-strings.php:386
+#: includes/description-strings.php:391
 msgid "Login required to submit"
 msgstr ""
 
-#: includes/description-strings.php:387
+#: includes/description-strings.php:392
 msgid "To continue editing your post, please log in to your account."
 msgstr ""
 
-#: includes/description-strings.php:388
+#: includes/description-strings.php:393
 msgid "Login required to access posts"
 msgstr ""
 
-#: includes/description-strings.php:390
+#: includes/description-strings.php:395
 msgid "Login required to edit post"
 msgstr ""
 
-#: includes/description-strings.php:392
+#: includes/description-strings.php:397
 msgid "Please enter a title."
 msgstr ""
 
-#: includes/description-strings.php:393
+#: includes/description-strings.php:398
 msgid "Please provide an excerpt."
 msgstr ""
 
-#: includes/description-strings.php:394
+#: includes/description-strings.php:399
 msgid "Please enter your username."
 msgstr ""
 
-#: includes/description-strings.php:395
+#: includes/description-strings.php:400
 msgid "Please enter your email address."
 msgstr ""
 
-#: includes/description-strings.php:396
+#: includes/description-strings.php:401
 msgid "Title"
 msgstr ""
 
-#: includes/description-strings.php:397
+#: includes/description-strings.php:402
 msgid "Excerpt"
 msgstr ""
 
-#: includes/description-strings.php:398
+#: includes/description-strings.php:403
 msgid "User name"
 msgstr ""
 
-#: includes/description-strings.php:399
+#: includes/description-strings.php:404
 msgid "User email"
 msgstr ""
 
-#: includes/description-strings.php:400
+#: includes/description-strings.php:405
 msgid "is missing. Please provide it."
 msgstr ""
 
-#: includes/description-strings.php:401
+#: includes/description-strings.php:406
 msgid "are missing. Please provide them."
 msgstr ""
 
-#: includes/description-strings.php:402
+#: includes/description-strings.php:407
 msgid "Image size limit"
 msgstr ""
 
-#: includes/description-strings.php:404
+#: includes/description-strings.php:409
 #, php-format
 msgid "The size of the image has exceeded the allowed limit, which is %s KB."
 msgstr ""
 
-#: includes/description-strings.php:405
+#: includes/description-strings.php:410
 msgid "Invalid index to insert the image to editor"
 msgstr ""
 
-#: includes/description-strings.php:406
+#: includes/description-strings.php:411
 msgid "No selection in quill editor"
 msgstr ""
 
-#: includes/description-strings.php:407
+#: includes/description-strings.php:412
 msgid "Error!"
 msgstr ""
 
-#: includes/description-strings.php:408
+#: includes/description-strings.php:413
 msgid "This submission form has been removed by the webmaster. Please check back later."
 msgstr ""
 
-#: includes/description-strings.php:409
+#: includes/description-strings.php:414
 msgid "Unsaved Changes"
 msgstr ""
 
-#: includes/description-strings.php:410
+#: includes/description-strings.php:415
 msgid "Are you sure you want to reload the page without saving your changes?"
+msgstr ""
+
+#: includes/helpers.php:605
+#, php-format
+msgid "Too many images. Maximum allowed: %d"
+msgstr ""
+
+#: includes/helpers.php:633
+msgid "Invalid image type detected in content."
+msgstr ""
+
+#: includes/helpers.php:645
+msgid "Invalid image data detected in content."
+msgstr ""
+
+#: includes/helpers.php:658
+#, php-format
+msgid "Image size exceeds the allowed limit of %d KB."
+msgstr ""
+
+#: includes/helpers.php:675
+msgid "Image content does not match declared type."
+msgstr ""
+
+#: includes/helpers.php:692
+msgid "Failed to upload image."
+msgstr ""
+
+#: includes/helpers.php:712
+msgid "Failed to create media attachment."
 msgstr ""
 
 #: includes/shortcodes.php:208

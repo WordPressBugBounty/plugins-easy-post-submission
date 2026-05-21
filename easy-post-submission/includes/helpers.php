@@ -14,7 +14,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Helper', false ) ) {
 		 * @return Easy_Post_Submission_Client_Helper
 		 */
 		public static function get_instance() {
-			if ( self::$instance === null ) {
+			if ( null === self::$instance ) {
 				self::$instance = new self();
 			}
 

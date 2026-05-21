@@ -290,6 +290,11 @@ if ( ! function_exists( 'easy_post_submission_admin_description_strings' ) ) {
 			'pixwellTagline'                       => esc_html__( 'Magazine WordPress Theme', 'easy-post-submission' ),
 			'learnMore'                            => esc_html__( 'Learn More', 'easy-post-submission' ),
 
+			// Recommended plugins
+			'recommendedPlugins'                   => esc_html__( 'Recommended Plugins', 'easy-post-submission' ),
+			'recommendedPluginsDesc'               => esc_html__( 'Free plugins from ThemeRuby that work great together.', 'easy-post-submission' ),
+			'getPlugin'                            => esc_html__( 'Get Plugin', 'easy-post-submission' ),
+
 			// Useful shortcodes
 			'usefulShortcodes'                     => esc_html__( 'Useful shortcodes for setup', 'easy-post-submission' ),
 			'displaySubmitPostFormFrontend'        => esc_html__( 'Display the submit post form on the frontend', 'easy-post-submission' ),
@@ -362,6 +367,7 @@ if ( ! function_exists( 'easy_post_submission_description_strings' ) ) {
 			'hintPostFeatured'                     => esc_html__( 'A relevant, high-quality image effectively conveys the essence of your content and captures the attention of your audience.', 'easy-post-submission' ),
 			'chooseFeaturedImage'                  => esc_html__( 'Select an Image', 'easy-post-submission' ),
 			'editFeaturedImage'                    => esc_html__( 'Edit Featured Image', 'easy-post-submission' ),
+			'clickToReplace'                       => esc_html__( 'Click to replace', 'easy-post-submission' ),
 			'submitPostLabel'                      => esc_html__( 'Submit Post', 'easy-post-submission' ),
 			'updatePostLabel'                      => esc_html__( 'Update Post', 'easy-post-submission' ),
 			'challengeRequiredInput'               => esc_html__( 'An answer is required!', 'easy-post-submission' ),

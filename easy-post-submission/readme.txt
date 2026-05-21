@@ -2,9 +2,9 @@
 Contributors: themeruby
 Tags: frontend post, guest post, anonymous post, user post, public post
 Requires at least: 6.3
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.5.0
+Stable tag: 2.6.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -101,6 +101,11 @@ Yes or no, depending on your choice in the settings.
 If you want to contribute, visit our [GitHub Repository](https://github.com/ThemeRuby/easy-post-submission) and see where you can help.
 
 == Changelog ==
+
+= 2.6.0 =
+* Improved: Compatible with WordPress 7.0
+* Improved: Featured image upload UI - click on image to replace
+* Improved: Code quality per WordPress coding standards
 
 = 2.5.0 =
 * Improved: Enhanced form validation and data handling

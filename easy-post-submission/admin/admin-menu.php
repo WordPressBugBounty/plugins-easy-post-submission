@@ -20,7 +20,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Menu', false ) ) {
 		 * @return Easy_Post_Submission_Menu Instance of Easy_Post_Submission_Menu.
 		 */
 		public static function get_instance() {
-			if ( self::$instance === null ) {
+			if ( null === self::$instance ) {
 				self::$instance = new self();
 			}
 
@@ -86,7 +86,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Menu', false ) ) {
 		 *
 		 * @return array Modified array of post state labels.
 		 */
-		function post_state( $post_states, $post ) {
+		public function post_state( $post_states, $post ) {
 
 			$form_submission_id = get_post_meta( $post->ID, 'rbsm_form_id', true );
 
@@ -112,7 +112,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Menu', false ) ) {
 		 *
 		 * @return array Modified plugin action links.
 		 */
-		function add_plugin_setting_link( $links, $file ) {
+		public function add_plugin_setting_link( $links, $file ) {
 			if ( $file === EASY_POST_SUBMISSION_REL_PATH . '/easy-post-submission.php' && current_user_can( 'manage_options' ) ) {
 				$links[] = '<a href="admin.php?page=easy-post-submission">' . esc_html__( 'Settings', 'easy-post-submission' ) . '</a>';
 			}
@@ -176,7 +176,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Menu', false ) ) {
 		 *
 		 * @return string Base64 encoded SVG icon.
 		 */
-		function get_plugin_icon() {
+		private function get_plugin_icon() {
 			return 'PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBmaWxsPSIjZjBmNmZjOTkiPjxwYXRoIGQ9Ik00MjEuMDczIDIyMS43MTljLTAuNTc4IDExLjcxOS05LjQ2OSAyNi4xODgtMjMuNzk3IDQwLjA5NHYxODMuMjVjLTAuMDE2IDQuNzE5LTEuODc1IDguNzE5LTUuMDE2IDExLjg0NC0zLjE1NiAzLjA2My03LjI1IDQuODc1LTEyLjA2MyA0LjkwNkg4MS41NThjLTQuNzgxLTAuMDMxLTguODkxLTEuODQ0LTEyLjA0Ny00LjkwNi0zLjE0MS0zLjEyNS00Ljk4NC03LjEyNS01LTExLjg0NFYxNTIuMjE5YzAuMDE2LTQuNzAzIDEuODU5LTguNzE5IDUtMTEuODQ0IDMuMTU2LTMuMDYzIDcuMjY2LTQuODc1IDEyLjA0Ny00LjkwNmgxNTguNjA5YzEyLjgyOC0xNi44NDQgMjcuNzgxLTM0LjA5NCA0NC43MTktNDkuOTA2SDgxLjU1OGMtMTguNzUtMC4wMTYtMzUuOTg0IDcuNTMxLTQ4LjI1IDE5LjU5NC0xMi4zMjggMTIuMDYzLTIwLjAxNiAyOC45MzgtMjAgNDcuMzQ0djI5Mi44NDRjLTAuMDE2IDE4LjQwNiA3LjY3MiAzNS4zMTMgMjAgNDcuMzQ0QzQ1LjU3MyA1MDQuNDY5IDYyLjgwOCA1MTIgODEuNTU4IDUxMmgyOTguNjQxYzE4Ljc4MSAwIDM2LjAxNi03LjUzMSA0OC4yODEtMTkuNTk0IDEyLjI5Ny0xMi4wMzEgMjAtMjguOTM4IDE5Ljk4NC00Ny4zNDRWMjAzLjQ2OWMwIDAtMC4xMjUtMC4xNTYtMC4zMjgtMC4zMTNDNDQwLjM3IDIwOS44MTMgNDMxLjMyMyAyMTYuMTU2IDQyMS4wNzMgMjIxLjcxOXoiPjwvcGF0aD48cGF0aCBkPSJNNDk4LjA1OCAwYzAgMC0xNS42ODggMjMuNDM4LTExOC4xNTYgNTguMTA5QzI3NS40MTcgOTMuNDY5IDIxMS4xMDQgMjM3LjMxMyAyMTEuMTA0IDIzNy4zMTNjLTE1LjQ4NCAyOS40NjktNzYuNjg4IDE1MS45MDYtNzYuNjg4IDE1MS45MDYtMTYuODU5IDMxLjYyNSAxNC4wMzEgNTAuMzEzIDMyLjE1NiAxNy42NTYgMzQuNzM0LTYyLjY4OCA1Ny4xNTYtMTE5Ljk2OSAxMDkuOTY5LTEyMS41OTQgNzcuMDQ3LTIuMzc1IDEyOS43MzQtNjkuNjU2IDExMy4xNTYtNjYuNTMxLTIxLjgxMyA5LjUtNjkuOTA2IDAuNzE5LTQxLjU3OC0zLjY1NiA2OC01LjQ1MyAxMDkuOTA2LTU2LjU2MyA5Ni4yNS02MC4wMzEtMjQuMTA5IDkuMjgxLTQ2LjU5NCAwLjQ2OS01MS0yLjE4OEM1MTMuMzg2IDEzOC4yODEgNDk4LjA1OCAwIDQ5OC4wNTggMHoiPjwvcGF0aD48L3N2Zz4=';
 		}
 

@@ -26,7 +26,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Admin_Ajax_Handler', false ) ) {
 		 */
 		public static function get_instance() {
 
-			if ( self::$instance === null ) {
+			if ( null === self::$instance ) {
 				self::$instance = new self();
 			}
 
@@ -54,56 +54,6 @@ if ( ! class_exists( 'Easy_Post_Submission_Admin_Ajax_Handler', false ) ) {
 			add_action( 'wp_ajax_rbsm_restore_data', [ $this, 'restore_data' ] );
 			add_action( 'wp_ajax_rbsm_get_post_manager', [ $this, 'get_post_manager' ] );
 			add_action( 'wp_ajax_rbsm_update_post_manager', [ $this, 'update_post_manager' ] );
-		}
-
-		/**
-		 * Sanitizes Value
-		 *
-		 * @param type $value
-		 * @param type $sanitize_type
-		 *
-		 * @return string
-		 *
-		 * @since 1.0.0
-		 */
-		private function sanitize_value( $value = '', $sanitize_type = 'text' ) {
-			switch ( $sanitize_type ) {
-				case 'html':
-					return wp_kses_post( $value );
-					break;
-				default:
-					return sanitize_text_field( $value );
-					break;
-			}
-		}
-
-		/**
-		 * Sanitize values in a multidimensional array.
-		 *
-		 * @param array $array
-		 * @param array $sanitize_rule
-		 *
-		 * @return array
-		 *
-		 * @since 1.0.0
-		 */
-		private function sanitize_array( $array = [], $sanitize_rule = [] ) {
-			if ( ! is_array( $array ) || count( $array ) == 0 ) {
-				return [];
-			}
-
-			foreach ( $array as $key => $value ) {
-				if ( ! is_array( $value ) ) {
-					$sanitize_type = isset( $sanitize_rule[ $key ] ) ? $sanitize_rule[ $key ] : 'text';
-					$array[ $key ] = $this->sanitize_value( $value, $sanitize_type );
-				}
-
-				if ( is_array( $value ) ) {
-					$array[ $key ] = $this->sanitize_array( $value, $sanitize_rule );
-				}
-			}
-
-			return $array;
 		}
 
 		/**
@@ -701,7 +651,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Admin_Ajax_Handler', false ) ) {
 		 * @return string|null Returns the email if valid, or `null` if invalid.
 		 */
 		private function validate_email( $email ) {
-			if ( $email === '' ) {
+			if ( '' === $email ) {
 				return $email;
 			}
 
@@ -723,7 +673,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Admin_Ajax_Handler', false ) ) {
 		 * @return string|null Returns the URL if valid, or `null` if invalid.
 		 */
 		private function validate_url( $url ) {
-			if ( $url === '' ) {
+			if ( '' === $url ) {
 				return $url;
 			}
 
@@ -858,7 +808,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Admin_Ajax_Handler', false ) ) {
 				[ '%d' ]
 			);
 
-			if ( $result !== false ) {
+			if ( false !== $result ) {
 				wp_send_json_success( esc_html__( 'Save successfully!', 'easy-post-submission' ) );
 			} else {
 				wp_send_json_error( esc_html__( 'Save to Database failed.', 'easy-post-submission' ) );
@@ -1360,15 +1310,15 @@ if ( ! class_exists( 'Easy_Post_Submission_Admin_Ajax_Handler', false ) ) {
 				'custom_registration_link'         => $custom_registration_link,
 			];
 
-			$recaptcha              = isset( $post_manager_data['recaptcha'] ) ? $post_manager_data['recaptcha'] : [];
-			$captcha_type           = isset( $recaptcha['captcha_type'] ) ? sanitize_text_field( $recaptcha['captcha_type'] ) : 'none';
-			$recaptcha_site_key     = isset( $recaptcha['site_key'] ) ? sanitize_text_field( $recaptcha['site_key'] ) : '';
-			$recaptcha_secret_key   = isset( $recaptcha['secret_key'] ) ? sanitize_text_field( $recaptcha['secret_key'] ) : '';
-			$turnstile_site_key     = isset( $recaptcha['turnstile_site_key'] ) ? sanitize_text_field( $recaptcha['turnstile_site_key'] ) : '';
-			$turnstile_secret_key   = isset( $recaptcha['turnstile_secret_key'] ) ? sanitize_text_field( $recaptcha['turnstile_secret_key'] ) : '';
-			$enable_for_forms       = isset( $recaptcha['enable_for_forms'] ) ? (bool) $recaptcha['enable_for_forms'] : false;
-			$enable_for_login       = isset( $recaptcha['enable_for_login'] ) ? (bool) $recaptcha['enable_for_login'] : false;
-			$enable_for_register    = isset( $recaptcha['enable_for_register'] ) ? (bool) $recaptcha['enable_for_register'] : false;
+			$recaptcha            = isset( $post_manager_data['recaptcha'] ) ? $post_manager_data['recaptcha'] : [];
+			$captcha_type         = isset( $recaptcha['captcha_type'] ) ? sanitize_text_field( $recaptcha['captcha_type'] ) : 'none';
+			$recaptcha_site_key   = isset( $recaptcha['site_key'] ) ? sanitize_text_field( $recaptcha['site_key'] ) : '';
+			$recaptcha_secret_key = isset( $recaptcha['secret_key'] ) ? sanitize_text_field( $recaptcha['secret_key'] ) : '';
+			$turnstile_site_key   = isset( $recaptcha['turnstile_site_key'] ) ? sanitize_text_field( $recaptcha['turnstile_site_key'] ) : '';
+			$turnstile_secret_key = isset( $recaptcha['turnstile_secret_key'] ) ? sanitize_text_field( $recaptcha['turnstile_secret_key'] ) : '';
+			$enable_for_forms     = isset( $recaptcha['enable_for_forms'] ) ? (bool) $recaptcha['enable_for_forms'] : false;
+			$enable_for_login     = isset( $recaptcha['enable_for_login'] ) ? (bool) $recaptcha['enable_for_login'] : false;
+			$enable_for_register  = isset( $recaptcha['enable_for_register'] ) ? (bool) $recaptcha['enable_for_register'] : false;
 
 			// Validate captcha_type is one of allowed values
 			$allowed_captcha_types = [ 'none', 'recaptcha', 'turnstile' ];

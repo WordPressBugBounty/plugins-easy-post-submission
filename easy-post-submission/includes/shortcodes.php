@@ -19,7 +19,7 @@ if ( ! class_exists( 'Easy_Post_Submission_Form_Shortcode', false ) ) {
 
 		public static function get_instance() {
 
-			if ( self::$instance === null ) {
+			if ( null === self::$instance ) {
 				self::$instance = new self();
 			}
 
