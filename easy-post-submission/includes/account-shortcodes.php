@@ -514,7 +514,13 @@ if ( ! class_exists( 'Easy_Post_Submission_Account_Forms' ) ) {
 				return;
 			}
 
-			// handles all validation and sends password setup email
+			/*
+			 * Handles validation, creates the user, and fires the 'register_new_user'
+			 * action itself. Core hooks wp_send_new_user_notifications() to that action,
+			 * which sends both the admin notification and the user's password-setup
+			 * email. Do NOT fire 'register_new_user' again here — doing so sends every
+			 * registration email a second time.
+			 */
 			$user_id = register_new_user( $user_login, $user_email );
 
 			if ( is_wp_error( $user_id ) ) {
@@ -522,9 +528,6 @@ if ( ! class_exists( 'Easy_Post_Submission_Account_Forms' ) ) {
 
 				return;
 			}
-
-			// WordPress core action - fires after successful registration
-			do_action( 'register_new_user', $user_id );
 
 			// Redirect to show success message
 			// This prevents the form from being shown again after successful registration

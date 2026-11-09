@@ -1,15 +1,6 @@
 <?php
-/**
- * reCAPTCHA Settings Migration
- *
- * Migrates reCAPTCHA settings from individual forms to global settings
- *
- * @package Easy_Post_Submission
- */
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Migrate reCAPTCHA settings from forms to global settings
@@ -102,4 +93,5 @@ function easy_post_submission_maybe_migrate_after_update( $upgrader_object, $opt
 	}
 }
 
+// Initialize
 add_action( 'upgrader_process_complete', 'easy_post_submission_maybe_migrate_after_update', 10, 2 );

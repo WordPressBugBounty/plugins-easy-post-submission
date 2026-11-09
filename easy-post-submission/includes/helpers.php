@@ -3,9 +3,6 @@
 defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'Easy_Post_Submission_Client_Helper', false ) ) {
-	/**
-	 * Class Easy_Post_Submission_Client_Helper
-	 */
 	class Easy_Post_Submission_Client_Helper {
 		private static $instance;
 		public static $post_manager_settings;
@@ -256,6 +253,55 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Helper', false ) ) {
 				'should_display_post_view' => $yes_post_view,
 				'is_final_page'            => $is_final_page,
 			];
+		}
+
+		/**
+		 * Counts the current user's submitted posts, grouped by status.
+		 *
+		 * Mirrors the query used by get_user_posts_data() — same author, same
+		 * rbsm_form_id meta requirement, same three statuses — so the totals shown in
+		 * the account header always agree with the rows listed beneath it.
+		 *
+		 * Uses one indexed COUNT per status rather than fetching post objects, since
+		 * only the totals are needed.
+		 *
+		 * @since 2.7.0
+		 *
+		 * @return array Counts keyed by status, plus a 'total'. All zero when logged out.
+		 */
+		public function get_user_post_counts() {
+
+			$counts = [
+				'publish' => 0,
+				'pending' => 0,
+				'draft'   => 0,
+				'total'   => 0,
+			];
+
+			if ( ! is_user_logged_in() ) {
+				return $counts;
+			}
+
+			foreach ( [ 'publish', 'pending', 'draft' ] as $status ) {
+				$query = new WP_Query(
+					[
+						'post_type'              => 'post',
+						'author'                 => get_current_user_id(),
+						'post_status'            => $status,
+						'meta_key'               => 'rbsm_form_id',
+						'posts_per_page'         => 1,
+						'fields'                 => 'ids',
+						'no_found_rows'          => false,
+						'update_post_meta_cache' => false,
+						'update_post_term_cache' => false,
+					]
+				);
+
+				$counts[ $status ] = (int) $query->found_posts;
+				$counts['total']  += $counts[ $status ];
+			}
+
+			return $counts;
 		}
 
 		/**

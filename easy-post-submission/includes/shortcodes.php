@@ -406,6 +406,36 @@ if ( ! class_exists( 'Easy_Post_Submission_Form_Shortcode', false ) ) {
 				'isUserLogged'        => is_user_logged_in(),
 				'userPostsData'       => Easy_Post_Submission_Client_Helper::get_instance()->get_user_posts_data(),
 				'postManagerSettings' => self::$initial_localize_data['postManagerSettings'],
+				'currentUser'         => $this->get_current_user_data(),
+			];
+		}
+
+		/**
+		 * Retrieves display data for the currently logged-in user.
+		 *
+		 * Used by the post manager's account section. This is deliberately scoped to the
+		 * post manager payload rather than the global localize data, so a user's name,
+		 * email and logout nonce are not emitted on every page that loads the client
+		 * bundle.
+		 *
+		 * @since 2.7.0
+		 *
+		 * @return array|null Account data for the current user, or null when logged out.
+		 */
+		private function get_current_user_data() {
+
+			if ( ! is_user_logged_in() ) {
+				return null;
+			}
+
+			$user = wp_get_current_user();
+
+			return [
+				'displayName' => $user->display_name,
+				'userEmail'   => $user->user_email,
+				'avatarUrl'   => get_avatar_url( $user->ID, [ 'size' => 96 ] ),
+				'logoutUrl'   => wp_logout_url( home_url() ),
+				'postCounts'  => Easy_Post_Submission_Client_Helper::get_instance()->get_user_post_counts(),
 			];
 		}
 
@@ -620,6 +650,5 @@ if ( ! class_exists( 'Easy_Post_Submission_Form_Shortcode', false ) ) {
 	}
 }
 
-/** load */
-
+// Initialize
 Easy_Post_Submission_Form_Shortcode::get_instance();

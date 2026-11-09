@@ -2,9 +2,9 @@
 Contributors: themeruby
 Tags: frontend post, guest post, anonymous post, user post, public post
 Requires at least: 6.3
-Tested up to: 7.0
+Tested up to: 7.1.4
 Requires PHP: 7.4
-Stable tag: 2.6.0
+Stable tag: 2.8.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -102,6 +102,16 @@ If you want to contribute, visit our [GitHub Repository](https://github.com/Them
 
 == Changelog ==
 
+= 2.8.0 =
+* Improved: Tested with WordPress 7.1.4
+* Fixed: Featured images uploaded through the submission form now get their full image data (dimensions and thumbnail sizes), so they no longer display as a tiny 1x1 image on some themes.
+
+= 2.7.0 =
+* Improved: Tested with WordPress 7.0.3
+* Fixed: Registration through the login form shortcode sent every notification email twice.
+* Added: The post manager now opens with an account header showing your details, a breakdown of your submissions by status, and a log out button.
+* Improved: Code quality tooling and WordPress coding standards compliance.
+
 = 2.6.0 =
 * Improved: Compatible with WordPress 7.0
 * Improved: Featured image upload UI - click on image to replace
@@ -128,9 +138,11 @@ If you want to contribute, visit our [GitHub Repository](https://github.com/Them
 
 
 = 2.1.0 =
-* Added: Support for login form via shortcode
-* Added: Support for registration form via shortcode
-* Improved: CAPTCHA settings moved to global configuration
+* Added: Shortcode [easy_post_submission_login] for displaying the login form.
+* Added: Shortcode [easy_post_submission_register] for displaying the registration form.
+* Improved: CAPTCHA settings moved to the global configuration.
+* Improved: Media upload handling for better performance.
+* Fixed: Challenge validation issue.
 
 = 2.0.0 =
 * Fixed: Category and tag entity decoding issue

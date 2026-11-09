@@ -1,38 +1,59 @@
-#, fuzzy
+# Copyright (C) 2026 ThemeRuby
+# This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: easy-post-submission\n"
-"POT-Creation-Date: 2026-05-21 12:34+0700\n"
-"PO-Revision-Date: 2017-07-16 09:08+0700\n"
-"Last-Translator: \n"
-"Language-Team: ThemeRuby <support@themeruby.com>\n"
-"Language: en\n"
+"Project-Id-Version: Easy Post Submission 2.7.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/easy-post-submission\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.9\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: _x;__;_e;_nx:1,2;esc_html__;esc_html_e;esc_attr__;esc_attr_e\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
-"X-Poedit-SearchPathExcluded-1: .git\n"
-"X-Poedit-SearchPathExcluded-2: node_modules\n"
+"POT-Creation-Date: 2026-08-10T06:56:36+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: easy-post-submission\n"
 
-#: admin/admin-menu.php:55 admin/admin-menu.php:56 admin/admin-menu.php:65
-msgid "Easy Submission"
+#. Plugin Name of the plugin
+#: easy-post-submission.php
+#: admin/admin-menu.php:64
+#: admin/admin-menu.php:165
+#: includes/description-strings.php:18
+msgid "Easy Post Submission"
 msgstr ""
 
-#: admin/admin-menu.php:64 admin/admin-menu.php:165 includes/description-strings.php:18
-msgid "Easy Post Submission"
+#. Plugin URI of the plugin
+#: easy-post-submission.php
+msgid "https://easyps.net/"
+msgstr ""
+
+#. Description of the plugin
+#: easy-post-submission.php
+msgid "Enable users to submit posts and manage profiles from the front-end of your site. Ideal for news, magazines, and creative platforms to collect ideas and contributions easily."
+msgstr ""
+
+#. Author of the plugin
+#: easy-post-submission.php
+msgid "ThemeRuby"
+msgstr ""
+
+#. Author URI of the plugin
+#: easy-post-submission.php
+msgid "https://themeruby.com/"
+msgstr ""
+
+#: admin/admin-menu.php:55
+#: admin/admin-menu.php:56
+#: admin/admin-menu.php:65
+msgid "Easy Submission"
 msgstr ""
 
 #: admin/admin-menu.php:94
 msgid "via EPS"
 msgstr ""
 
-#: admin/admin-menu.php:117 includes/description-strings.php:34
+#: admin/admin-menu.php:117
+#: includes/description-strings.php:34
 msgid "Settings"
 msgstr ""
 
@@ -40,13 +61,23 @@ msgstr ""
 msgid "You are not allowed to access this feature."
 msgstr ""
 
-#: admin/ajax-handler.php:87 admin/ajax-handler.php:233 admin/ajax-handler.php:345 admin/ajax-handler.php:767
-#: admin/ajax-handler.php:827 admin/ajax-handler.php:873 admin/ajax-handler.php:916 admin/ajax-handler.php:947
-#: admin/ajax-handler.php:978 admin/ajax-handler.php:1091 admin/ajax-handler.php:1118 includes/client-ajax-handler.php:77
+#: admin/ajax-handler.php:87
+#: admin/ajax-handler.php:233
+#: admin/ajax-handler.php:345
+#: admin/ajax-handler.php:767
+#: admin/ajax-handler.php:827
+#: admin/ajax-handler.php:873
+#: admin/ajax-handler.php:916
+#: admin/ajax-handler.php:947
+#: admin/ajax-handler.php:978
+#: admin/ajax-handler.php:1091
+#: admin/ajax-handler.php:1118
+#: includes/client-ajax-handler.php:77
 msgid "Invalid nonce."
 msgstr ""
 
-#: admin/ajax-handler.php:113 includes/description-strings.php:339
+#: admin/ajax-handler.php:113
+#: includes/description-strings.php:340
 msgid "Submit a Post"
 msgstr ""
 
@@ -58,12 +89,16 @@ msgstr ""
 msgid "Edit Your Submission"
 msgstr ""
 
-#: admin/ajax-handler.php:144 includes/description-strings.php:390
+#: admin/ajax-handler.php:144
+#: includes/description-strings.php:391
 msgid "Login"
 msgstr ""
 
-#: admin/ajax-handler.php:154 includes/account-shortcodes.php:830 includes/account-shortcodes.php:922
-#: includes/description-strings.php:222 includes/description-strings.php:389
+#: admin/ajax-handler.php:154
+#: includes/account-shortcodes.php:833
+#: includes/account-shortcodes.php:925
+#: includes/description-strings.php:222
+#: includes/description-strings.php:390
 msgid "Register"
 msgstr ""
 
@@ -75,7 +110,8 @@ msgstr ""
 msgid "No data received to save. Please try again."
 msgstr ""
 
-#: admin/ajax-handler.php:247 admin/ajax-handler.php:783
+#: admin/ajax-handler.php:247
+#: admin/ajax-handler.php:783
 msgid "Data invalid."
 msgstr ""
 
@@ -87,7 +123,8 @@ msgstr ""
 msgid "The form title already exists. Please choose a different title."
 msgstr ""
 
-#: admin/ajax-handler.php:268 admin/ajax-handler.php:812
+#: admin/ajax-handler.php:268
+#: admin/ajax-handler.php:812
 msgid "Save successfully!"
 msgstr ""
 
@@ -131,7 +168,10 @@ msgstr ""
 msgid "valid data before saving!"
 msgstr ""
 
-#: admin/ajax-handler.php:777 admin/ajax-handler.php:837 admin/ajax-handler.php:985 admin/ajax-handler.php:1125
+#: admin/ajax-handler.php:777
+#: admin/ajax-handler.php:837
+#: admin/ajax-handler.php:985
+#: admin/ajax-handler.php:1125
 msgid "Form data is incorrect or missing."
 msgstr ""
 
@@ -143,7 +183,9 @@ msgstr ""
 msgid "Save to Database failed."
 msgstr ""
 
-#: admin/ajax-handler.php:843 admin/ajax-handler.php:991 admin/ajax-handler.php:1132
+#: admin/ajax-handler.php:843
+#: admin/ajax-handler.php:991
+#: admin/ajax-handler.php:1132
 msgid "Json data invalid."
 msgstr ""
 
@@ -191,9 +233,16 @@ msgstr ""
 msgid "Login Notification Message is missing!"
 msgstr ""
 
-#: admin/ajax-handler.php:1215 admin/ajax-handler.php:1227 admin/ajax-handler.php:1236 admin/ajax-handler.php:1244
-#: admin/ajax-handler.php:1252 admin/ajax-handler.php:1270 admin/ajax-handler.php:1278 admin/ajax-handler.php:1286
-#: admin/ajax-handler.php:1294 admin/ajax-handler.php:1302
+#: admin/ajax-handler.php:1215
+#: admin/ajax-handler.php:1227
+#: admin/ajax-handler.php:1236
+#: admin/ajax-handler.php:1244
+#: admin/ajax-handler.php:1252
+#: admin/ajax-handler.php:1270
+#: admin/ajax-handler.php:1278
+#: admin/ajax-handler.php:1286
+#: admin/ajax-handler.php:1294
+#: admin/ajax-handler.php:1302
 msgid "Data is invalid."
 msgstr ""
 
@@ -209,7 +258,8 @@ msgstr ""
 msgid "Please complete the reCAPTCHA verification."
 msgstr ""
 
-#: includes/account-shortcodes.php:259 includes/client-ajax-handler.php:365
+#: includes/account-shortcodes.php:259
+#: includes/client-ajax-handler.php:365
 msgid "Unable to verify reCAPTCHA. Please try again."
 msgstr ""
 
@@ -229,7 +279,8 @@ msgstr ""
 msgid "Please complete the Turnstile verification."
 msgstr ""
 
-#: includes/account-shortcodes.php:321 includes/client-ajax-handler.php:435
+#: includes/account-shortcodes.php:321
+#: includes/client-ajax-handler.php:435
 msgid "Unable to verify Turnstile. Please try again."
 msgstr ""
 
@@ -245,88 +296,93 @@ msgstr ""
 msgid "The password field is empty."
 msgstr ""
 
-#: includes/account-shortcodes.php:485 includes/account-shortcodes.php:669
+#: includes/account-shortcodes.php:485
+#: includes/account-shortcodes.php:672
 msgid "User registration is currently not allowed."
 msgstr ""
 
-#: includes/account-shortcodes.php:694
+#. translators: %s: Username
+#: includes/account-shortcodes.php:697
 #, php-format
 msgid "You are already logged in as %s."
 msgstr ""
 
-#: includes/account-shortcodes.php:701
+#: includes/account-shortcodes.php:704
 msgid "Go to Dashboard"
 msgstr ""
 
-#: includes/account-shortcodes.php:704
+#: includes/account-shortcodes.php:707
 msgid "Logout"
 msgstr ""
 
-#: includes/account-shortcodes.php:743 includes/account-shortcodes.php:1006
+#: includes/account-shortcodes.php:746
+#: includes/account-shortcodes.php:1009
 msgid "Username or Email Address"
 msgstr ""
 
-#: includes/account-shortcodes.php:759
+#: includes/account-shortcodes.php:762
 msgid "Password"
 msgstr ""
 
-#: includes/account-shortcodes.php:772
+#: includes/account-shortcodes.php:775
 msgid "Show password"
 msgstr ""
 
-#: includes/account-shortcodes.php:772
+#: includes/account-shortcodes.php:775
 msgid "Hide password"
 msgstr ""
 
-#: includes/account-shortcodes.php:789
+#: includes/account-shortcodes.php:792
 msgid "Remember Me"
 msgstr ""
 
-#: includes/account-shortcodes.php:820
+#: includes/account-shortcodes.php:823
 msgid "Log In"
 msgstr ""
 
-#: includes/account-shortcodes.php:825
+#: includes/account-shortcodes.php:828
 msgid "Lost your password?"
 msgstr ""
 
-#: includes/account-shortcodes.php:869
+#: includes/account-shortcodes.php:872
 msgid "Email Address"
 msgstr ""
 
-#: includes/account-shortcodes.php:892
+#: includes/account-shortcodes.php:895
 msgid "A link to set your password will be sent to your email address."
 msgstr ""
 
-#: includes/account-shortcodes.php:928 includes/account-shortcodes.php:979 includes/account-shortcodes.php:1048
+#: includes/account-shortcodes.php:931
+#: includes/account-shortcodes.php:982
+#: includes/account-shortcodes.php:1051
 msgid "Back to Login"
 msgstr ""
 
-#: includes/account-shortcodes.php:950
+#: includes/account-shortcodes.php:953
 msgid "Success! Registration complete."
 msgstr ""
 
-#: includes/account-shortcodes.php:952
+#: includes/account-shortcodes.php:955
 msgid "Please check your email for a link to set your password."
 msgstr ""
 
-#: includes/account-shortcodes.php:971
+#: includes/account-shortcodes.php:974
 msgid "Check your email!"
 msgstr ""
 
-#: includes/account-shortcodes.php:974
+#: includes/account-shortcodes.php:977
 msgid "A password reset link has been sent to your email address."
 msgstr ""
 
-#: includes/account-shortcodes.php:1000
+#: includes/account-shortcodes.php:1003
 msgid "Reset Password"
 msgstr ""
 
-#: includes/account-shortcodes.php:1001
+#: includes/account-shortcodes.php:1004
 msgid "Please enter your username or email address. You will receive an email with a link to reset your password."
 msgstr ""
 
-#: includes/account-shortcodes.php:1043
+#: includes/account-shortcodes.php:1046
 msgid "Get New Password"
 msgstr ""
 
@@ -342,11 +398,13 @@ msgstr ""
 msgid "Sorry, you are not allowed to delete this post."
 msgstr ""
 
+#. translators: %d is the post ID
 #: includes/client-ajax-handler.php:145
 #, php-format
 msgid "The post with post ID: %d has been deleted."
 msgstr ""
 
+#. translators: %d is the post ID
 #: includes/client-ajax-handler.php:148
 #, php-format
 msgid "Post ID %d does not exist."
@@ -448,6 +506,7 @@ msgstr ""
 msgid "Valid excerpt!"
 msgstr ""
 
+#. translators: %d is the maximum number of images allowed
 #: includes/client-ajax-handler.php:598
 #, php-format
 msgid "You have reached the maximum limit of %d images."
@@ -477,7 +536,8 @@ msgstr ""
 msgid "User email is missing!"
 msgstr ""
 
-#: includes/client-ajax-handler.php:691 includes/client-ajax-handler.php:704
+#: includes/client-ajax-handler.php:691
+#: includes/client-ajax-handler.php:704
 msgid "Valid user email!"
 msgstr ""
 
@@ -509,7 +569,8 @@ msgstr ""
 msgid "Post was not existed."
 msgstr ""
 
-#: includes/client-ajax-handler.php:861 includes/client-ajax-handler.php:1119
+#: includes/client-ajax-handler.php:861
+#: includes/client-ajax-handler.php:1119
 msgid "You are not allowed to edit this post."
 msgstr ""
 
@@ -557,17 +618,24 @@ msgstr ""
 msgid "Your post has been submitted successfully!"
 msgstr ""
 
-#: includes/client-ajax-handler.php:1301 includes/client-ajax-handler.php:1302 includes/client-ajax-handler.php:1348
-#: includes/client-ajax-handler.php:1349 includes/client-ajax-handler.php:1395 includes/client-ajax-handler.php:1396
-#: includes/client-ajax-handler.php:1433 includes/client-ajax-handler.php:1435
+#: includes/client-ajax-handler.php:1301
+#: includes/client-ajax-handler.php:1302
+#: includes/client-ajax-handler.php:1348
+#: includes/client-ajax-handler.php:1349
+#: includes/client-ajax-handler.php:1395
+#: includes/client-ajax-handler.php:1396
+#: includes/client-ajax-handler.php:1433
+#: includes/client-ajax-handler.php:1435
 msgid "The post "
 msgstr ""
 
-#: includes/client-ajax-handler.php:1301 includes/client-ajax-handler.php:1348
+#: includes/client-ajax-handler.php:1301
+#: includes/client-ajax-handler.php:1348
 msgid " has just submitted."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1302 includes/client-ajax-handler.php:1349
+#: includes/client-ajax-handler.php:1302
+#: includes/client-ajax-handler.php:1349
 msgid " has just submitted. Please check at: "
 msgstr ""
 
@@ -583,15 +651,20 @@ msgstr ""
 msgid "The user email is empty"
 msgstr ""
 
-#: includes/client-ajax-handler.php:1364 includes/client-ajax-handler.php:1409 includes/client-ajax-handler.php:1448
+#: includes/client-ajax-handler.php:1364
+#: includes/client-ajax-handler.php:1409
+#: includes/client-ajax-handler.php:1448
 msgid "User mail was sent successfully."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1366 includes/client-ajax-handler.php:1411 includes/client-ajax-handler.php:1450
+#: includes/client-ajax-handler.php:1366
+#: includes/client-ajax-handler.php:1411
+#: includes/client-ajax-handler.php:1450
 msgid "User mail sending failed."
 msgstr ""
 
-#: includes/client-ajax-handler.php:1392 includes/client-ajax-handler.php:1430
+#: includes/client-ajax-handler.php:1392
+#: includes/client-ajax-handler.php:1430
 msgid "The user email address is empty."
 msgstr ""
 
@@ -636,10 +709,7 @@ msgid "No more posts found."
 msgstr ""
 
 #: includes/description-strings.php:19
-msgid ""
-"A lightweight and user-friendly WordPress plugin designed to let users submit content from the frontend with ease. "
-"Customizable forms, file uploads, and user role restrictions. Ideal for guest posts, user-generated content, and "
-"community contributions."
+msgid "A lightweight and user-friendly WordPress plugin designed to let users submit content from the frontend with ease. Customizable forms, file uploads, and user role restrictions. Ideal for guest posts, user-generated content, and community contributions."
 msgstr ""
 
 #: includes/description-strings.php:20
@@ -674,7 +744,8 @@ msgstr ""
 msgid "Save New Form"
 msgstr ""
 
-#: includes/description-strings.php:28 includes/description-strings.php:326
+#: includes/description-strings.php:28
+#: includes/description-strings.php:327
 msgid "Cancel"
 msgstr ""
 
@@ -698,7 +769,8 @@ msgstr ""
 msgid "Your Forms"
 msgstr ""
 
-#: includes/description-strings.php:35 includes/description-strings.php:323
+#: includes/description-strings.php:35
+#: includes/description-strings.php:324
 msgid "Delete"
 msgstr ""
 
@@ -735,9 +807,7 @@ msgid "User Posts Management"
 msgstr ""
 
 #: includes/description-strings.php:44
-msgid ""
-"To display the post listings to users, create a page and insert the shortcode below. Adjust the settings below to your "
-"preference."
+msgid "To display the post listings to users, create a page and insert the shortcode below. Adjust the settings below to your preference."
 msgstr ""
 
 #: includes/description-strings.php:45
@@ -788,14 +858,14 @@ msgstr ""
 msgid "Require users to log in to WordPress to view or submit forms."
 msgstr ""
 
-#: includes/description-strings.php:57 includes/description-strings.php:233
+#: includes/description-strings.php:57
+#: includes/description-strings.php:233
 msgid "Login Action Choice"
 msgstr ""
 
-#: includes/description-strings.php:58 includes/description-strings.php:234
-msgid ""
-"Choose whether to show a notification or redirect to the login page when a visitor accesses this page without being "
-"logged in."
+#: includes/description-strings.php:58
+#: includes/description-strings.php:234
+msgid "Choose whether to show a notification or redirect to the login page when a visitor accesses this page without being logged in."
 msgstr ""
 
 #: includes/description-strings.php:59
@@ -834,7 +904,8 @@ msgstr ""
 msgid "Requirement for the user email."
 msgstr ""
 
-#: includes/description-strings.php:68 includes/description-strings.php:327
+#: includes/description-strings.php:68
+#: includes/description-strings.php:328
 msgid "Post Title"
 msgstr ""
 
@@ -855,11 +926,11 @@ msgid "Post Content Editor"
 msgstr ""
 
 #: includes/description-strings.php:73
-msgid ""
-"Select the layout for the content editor: use a WYSIWYG editor for visual editing or choose raw HTML for manual input."
+msgid "Select the layout for the content editor: use a WYSIWYG editor for visual editing or choose raw HTML for manual input."
 msgstr ""
 
-#: includes/description-strings.php:74 includes/description-strings.php:365
+#: includes/description-strings.php:74
+#: includes/description-strings.php:366
 msgid "Featured Image"
 msgstr ""
 
@@ -911,7 +982,9 @@ msgstr ""
 msgid "The default image to use if no featured image is provided."
 msgstr ""
 
-#: includes/description-strings.php:87 includes/description-strings.php:328 includes/description-strings.php:358
+#: includes/description-strings.php:87
+#: includes/description-strings.php:329
+#: includes/description-strings.php:359
 msgid "Categories"
 msgstr ""
 
@@ -1000,9 +1073,7 @@ msgid "Custom Field Name"
 msgstr ""
 
 #: includes/description-strings.php:109
-msgid ""
-"The name of the custom field. Please use plain text without special characters, as it will be used to set the meta key. "
-"Use underscores (_) instead of spaces."
+msgid "The name of the custom field. Please use plain text without special characters, as it will be used to set the meta key. Use underscores (_) instead of spaces."
 msgstr ""
 
 #: includes/description-strings.php:110
@@ -1170,9 +1241,7 @@ msgid "Subject"
 msgstr ""
 
 #: includes/description-strings.php:151
-msgid ""
-"The subject of the email. You can use custom tags such as {{post_title}} and {{post_link}} to provide dynamic "
-"information."
+msgid "The subject of the email. You can use custom tags such as {{post_title}} and {{post_link}} to provide dynamic information."
 msgstr ""
 
 #: includes/description-strings.php:152
@@ -1247,7 +1316,8 @@ msgstr ""
 msgid "Settings have been saved successfully."
 msgstr ""
 
-#: includes/description-strings.php:170 includes/description-strings.php:322
+#: includes/description-strings.php:170
+#: includes/description-strings.php:323
 msgid "OK"
 msgstr ""
 
@@ -1275,11 +1345,13 @@ msgstr ""
 msgid "Form created"
 msgstr ""
 
+#. translators: %s is the name or title of the form
 #: includes/description-strings.php:178
 #, php-format
 msgid "%s has been created successfully."
 msgstr ""
 
+#. translators: %s is the name or title of the form
 #: includes/description-strings.php:180
 #, php-format
 msgid "Form %s was removed!"
@@ -1338,9 +1410,7 @@ msgid "Notification: A New Post Has Been Submitted"
 msgstr ""
 
 #: includes/description-strings.php:194
-msgid ""
-"Dear Admin, <br>We would like to inform you that a new post titled \"{{post_title}}\" has been successfully submitted. "
-"Please check and review the post in the system. <br>Best regards, The Support Team"
+msgid "Dear Admin, <br>We would like to inform you that a new post titled \"{{post_title}}\" has been successfully submitted. Please check and review the post in the system. <br>Best regards, The Support Team"
 msgstr ""
 
 #: includes/description-strings.php:195
@@ -1352,10 +1422,7 @@ msgid "Confirmation: Your Post Submission"
 msgstr ""
 
 #: includes/description-strings.php:197
-msgid ""
-"Dear Author, <br>We would like to inform you that your post titled \"{{post_title}}\" has been successfully submitted. "
-"Our team will review your post and notify you once its published. Thank you for your contribution! <br>Best regards, The "
-"Support Team"
+msgid "Dear Author, <br>We would like to inform you that your post titled \"{{post_title}}\" has been successfully submitted. Our team will review your post and notify you once its published. Thank you for your contribution! <br>Best regards, The Support Team"
 msgstr ""
 
 #: includes/description-strings.php:198
@@ -1367,10 +1434,7 @@ msgid "Congratulations: Your Post Is Now Live"
 msgstr ""
 
 #: includes/description-strings.php:200
-msgid ""
-"Dear author, <br>We are excited to inform you that your post titled \"{{post_title}}\" has been successfully published "
-"on our platform. You can now view your post live here: {{post_link}} Thank you for your contribution, and we look "
-"forward to more great content from you! <br>Best regards, The Support Team"
+msgid "Dear author, <br>We are excited to inform you that your post titled \"{{post_title}}\" has been successfully published on our platform. You can now view your post live here: {{post_link}} Thank you for your contribution, and we look forward to more great content from you! <br>Best regards, The Support Team"
 msgstr ""
 
 #: includes/description-strings.php:201
@@ -1382,10 +1446,7 @@ msgid "Notice: Your Post Has Been Removed"
 msgstr ""
 
 #: includes/description-strings.php:203
-msgid ""
-"Dear Author, <br>We regret to inform you that your post titled \"{{post_title}}\" has been removed from our platform. If "
-"you have any questions or concerns about this, please feel free to contact us. Thank you for your understanding. "
-"<br>Best regards, The Support Team"
+msgid "Dear Author, <br>We regret to inform you that your post titled \"{{post_title}}\" has been removed from our platform. If you have any questions or concerns about this, please feel free to contact us. Thank you for your understanding. <br>Best regards, The Support Team"
 msgstr ""
 
 #: includes/description-strings.php:204
@@ -1401,9 +1462,7 @@ msgid "Post Submission Edit Page URL"
 msgstr ""
 
 #: includes/description-strings.php:207
-msgid ""
-"Enter the URL of the page that displays the submission edit form ([easy_post_submission_edit]) when users click the Edit "
-"Post button in the post manager."
+msgid "Enter the URL of the page that displays the submission edit form ([easy_post_submission_edit]) when users click the Edit Post button in the post manager."
 msgstr ""
 
 #: includes/description-strings.php:208
@@ -1411,9 +1470,7 @@ msgid "Post Manager Page URL"
 msgstr ""
 
 #: includes/description-strings.php:209
-msgid ""
-"Enter the URL of the page that displays the post manager ([easy_post_submission_manager]). This URL will be used for "
-"login redirects to ensure users reach the correct post management page."
+msgid "Enter the URL of the page that displays the post manager ([easy_post_submission_manager]). This URL will be used for login redirects to ensure users reach the correct post management page."
 msgstr ""
 
 #: includes/description-strings.php:210
@@ -1441,28 +1498,34 @@ msgid "Form Submission Default ID"
 msgstr ""
 
 #: includes/description-strings.php:216
-msgid ""
-"This is the ID of the default form submission shortcode (e.g., [easy_post_submission_form id=1]). It will be used when "
-"displaying the Edit Post form if the form submission that belonged to that post was deleted."
+msgid "This is the ID of the default form submission shortcode (e.g., [easy_post_submission_form id=1]). It will be used when displaying the Edit Post form if the form submission that belonged to that post was deleted."
 msgstr ""
 
 #: includes/description-strings.php:217
 msgid "Post manager settings were saved successful!"
 msgstr ""
 
-#: includes/description-strings.php:218 includes/description-strings.php:235 includes/description-strings.php:239
+#: includes/description-strings.php:218
+#: includes/description-strings.php:235
+#: includes/description-strings.php:239
 msgid "Notification Title"
 msgstr ""
 
-#: includes/description-strings.php:219 includes/description-strings.php:236 includes/description-strings.php:240
+#: includes/description-strings.php:219
+#: includes/description-strings.php:236
+#: includes/description-strings.php:240
 msgid "Enter your notification title for users who are not logged in."
 msgstr ""
 
-#: includes/description-strings.php:220 includes/description-strings.php:237 includes/description-strings.php:241
+#: includes/description-strings.php:220
+#: includes/description-strings.php:237
+#: includes/description-strings.php:241
 msgid "Notification Message"
 msgstr ""
 
-#: includes/description-strings.php:221 includes/description-strings.php:238 includes/description-strings.php:242
+#: includes/description-strings.php:221
+#: includes/description-strings.php:238
+#: includes/description-strings.php:242
 msgid "Enter your notification description for users who are not logged in."
 msgstr ""
 
@@ -1499,9 +1562,7 @@ msgid "Valid post manager data has been imported."
 msgstr ""
 
 #: includes/description-strings.php:231
-msgid ""
-"To display the editing post to users, create a page and insert the shortcode below. Adjust the settings to your "
-"preference."
+msgid "To display the editing post to users, create a page and insert the shortcode below. Adjust the settings to your preference."
 msgstr ""
 
 #: includes/description-strings.php:232
@@ -1548,7 +1609,8 @@ msgstr ""
 msgid "Login Required to Access Posts"
 msgstr ""
 
-#: includes/description-strings.php:253 includes/description-strings.php:394
+#: includes/description-strings.php:253
+#: includes/description-strings.php:400
 msgid "You need to be logged in to view all posts. Please log in to continue."
 msgstr ""
 
@@ -1556,7 +1618,8 @@ msgstr ""
 msgid "Login Required to Edit Post"
 msgstr ""
 
-#: includes/description-strings.php:255 includes/description-strings.php:396
+#: includes/description-strings.php:255
+#: includes/description-strings.php:402
 msgid "You must be logged in to edit this post. Please log in to proceed."
 msgstr ""
 
@@ -1704,384 +1767,407 @@ msgstr ""
 msgid "Free plugins from ThemeRuby that work great together."
 msgstr ""
 
-#: includes/description-strings.php:298
-msgid "Useful shortcodes for setup"
+#: includes/description-strings.php:296
+msgid "Get Plugin"
 msgstr ""
 
 #: includes/description-strings.php:299
-msgid "Display the submit post form on the frontend"
+msgid "Useful shortcodes for setup"
 msgstr ""
 
 #: includes/description-strings.php:300
-msgid ""
-"Place the shortcode on a page, block, or widget where you want to display the submit form. Change the ID to match your "
-"form shortcode."
+msgid "Display the submit post form on the frontend"
 msgstr ""
 
 #: includes/description-strings.php:301
-msgid "Display the list of post submissions for logged-in users"
+msgid "Place the shortcode on a page, block, or widget where you want to display the submit form. Change the ID to match your form shortcode."
 msgstr ""
 
 #: includes/description-strings.php:302
-msgid "Place the shortcode on a page where you want to display the user profile posts."
+msgid "Display the list of post submissions for logged-in users"
 msgstr ""
 
 #: includes/description-strings.php:303
-msgid "Display the edit post submission for logged-in users"
+msgid "Place the shortcode on a page where you want to display the user profile posts."
 msgstr ""
 
 #: includes/description-strings.php:304
-msgid "Place the shortcode on a page where the logged-in user can edit their submission."
+msgid "Display the edit post submission for logged-in users"
 msgstr ""
 
 #: includes/description-strings.php:305
+msgid "Place the shortcode on a page where the logged-in user can edit their submission."
+msgstr ""
+
+#: includes/description-strings.php:306
 msgid "Full documentation"
 msgstr ""
 
-#: includes/description-strings.php:324
+#: includes/description-strings.php:325
 msgid "Confirm Delete"
 msgstr ""
 
-#: includes/description-strings.php:325
+#: includes/description-strings.php:326
 msgid "Submit"
 msgstr ""
 
-#: includes/description-strings.php:329
+#: includes/description-strings.php:330
 msgid "Created"
 msgstr ""
 
-#: includes/description-strings.php:330
+#: includes/description-strings.php:331
 msgid "Status"
 msgstr ""
 
-#: includes/description-strings.php:331
+#: includes/description-strings.php:332
 msgid "Views"
 msgstr ""
 
-#: includes/description-strings.php:332
+#: includes/description-strings.php:333
 msgid "Actions"
 msgstr ""
 
-#: includes/description-strings.php:333
+#: includes/description-strings.php:334
 msgid "It looks like there are no posts to display yet!"
 msgstr ""
 
-#: includes/description-strings.php:334
+#: includes/description-strings.php:335
 msgid "We would love to see your contributions! Please submit your posts to showcase them here."
 msgstr ""
 
-#: includes/description-strings.php:335
+#: includes/description-strings.php:336
 msgid "Please Log In to Continue"
 msgstr ""
 
-#: includes/description-strings.php:336
+#: includes/description-strings.php:337
 msgid "Load More Posts"
 msgstr ""
 
-#: includes/description-strings.php:337
+#: includes/description-strings.php:338
 msgid "Your Posts"
 msgstr ""
 
-#: includes/description-strings.php:338
+#: includes/description-strings.php:339
 msgid "Edit Post"
 msgstr ""
 
-#: includes/description-strings.php:341
+#. translators: %s is the title or name of the post
+#: includes/description-strings.php:342
 #, php-format
 msgid "%s was deleted successfully."
 msgstr ""
 
-#: includes/description-strings.php:343
+#. translators: %s is the title or name of the post
+#: includes/description-strings.php:344
 #, php-format
 msgid "Are you sure you want to delete the post: %s ?"
 msgstr ""
 
-#: includes/description-strings.php:344
+#: includes/description-strings.php:345
 msgid "Your Name"
 msgstr ""
 
-#: includes/description-strings.php:345
+#: includes/description-strings.php:346
 msgid "Enter your full name as you would like it to appear."
 msgstr ""
 
-#: includes/description-strings.php:346
+#: includes/description-strings.php:347
 msgid "Your Email"
 msgstr ""
 
-#: includes/description-strings.php:347
-msgid ""
-"Your email address will not be publicly displayed. It is used solely for administrative purposes and to contact you "
-"about your post."
-msgstr ""
-
 #: includes/description-strings.php:348
-msgid "Competition Challenge"
+msgid "Your email address will not be publicly displayed. It is used solely for administrative purposes and to contact you about your post."
 msgstr ""
 
 #: includes/description-strings.php:349
-msgid "Please answer the question:"
+msgid "Competition Challenge"
 msgstr ""
 
 #: includes/description-strings.php:350
-msgid "The answer provided is invalid. Please enter a valid response."
+msgid "Please answer the question:"
 msgstr ""
 
 #: includes/description-strings.php:351
-msgid "Add Title"
+msgid "The answer provided is invalid. Please enter a valid response."
 msgstr ""
 
 #: includes/description-strings.php:352
-msgid ""
-"Short and sweet is the way to go! Try to keep your post title between 50 and 70 characters to make it more engaging."
+msgid "Add Title"
 msgstr ""
 
 #: includes/description-strings.php:353
-msgid "Add Excerpt"
+msgid "Short and sweet is the way to go! Try to keep your post title between 50 and 70 characters to make it more engaging."
 msgstr ""
 
 #: includes/description-strings.php:354
-msgid ""
-"Aim for a length of about 20 to 55 words. A concise excerpt captures the essence of your post without giving everything "
-"away."
+msgid "Add Excerpt"
 msgstr ""
 
 #: includes/description-strings.php:355
-msgid "Add Post Content"
+msgid "Aim for a length of about 20 to 55 words. A concise excerpt captures the essence of your post without giving everything away."
 msgstr ""
 
 #: includes/description-strings.php:356
-msgid "Start writing your content here..."
+msgid "Add Post Content"
 msgstr ""
 
 #: includes/description-strings.php:357
+msgid "Start writing your content here..."
+msgstr ""
+
+#: includes/description-strings.php:358
 msgid "Begin with a captivating introduction that grabs your readers attention and gives them a reason to keep reading."
 msgstr ""
 
-#: includes/description-strings.php:359
+#: includes/description-strings.php:360
 msgid "Choose Categories"
 msgstr ""
 
-#: includes/description-strings.php:360
+#: includes/description-strings.php:361
 msgid "Choose categories that accurately reflect your post content."
 msgstr ""
 
-#: includes/description-strings.php:361
+#: includes/description-strings.php:362
 msgid "Post Tags"
 msgstr ""
 
-#: includes/description-strings.php:362
+#: includes/description-strings.php:363
 msgid "Add Tags"
 msgstr ""
 
-#: includes/description-strings.php:363
+#: includes/description-strings.php:364
 msgid "Choose Tags"
 msgstr ""
 
-#: includes/description-strings.php:364
+#: includes/description-strings.php:365
 msgid "Choose tags that are most relevant to your post content."
 msgstr ""
 
-#: includes/description-strings.php:366
-msgid ""
-"A relevant, high-quality image effectively conveys the essence of your content and captures the attention of your "
-"audience."
-msgstr ""
-
 #: includes/description-strings.php:367
-msgid "Select an Image"
+msgid "A relevant, high-quality image effectively conveys the essence of your content and captures the attention of your audience."
 msgstr ""
 
 #: includes/description-strings.php:368
-msgid "Edit Featured Image"
+msgid "Select an Image"
 msgstr ""
 
 #: includes/description-strings.php:369
-msgid "Click to replace"
+msgid "Edit Featured Image"
 msgstr ""
 
 #: includes/description-strings.php:370
-msgid "Submit Post"
+msgid "Click to replace"
 msgstr ""
 
 #: includes/description-strings.php:371
-msgid "Update Post"
+msgid "Submit Post"
 msgstr ""
 
 #: includes/description-strings.php:372
-msgid "An answer is required!"
+msgid "Update Post"
 msgstr ""
 
 #: includes/description-strings.php:373
-msgid "reCAPTCHA was not verified"
+msgid "An answer is required!"
 msgstr ""
 
 #: includes/description-strings.php:374
-msgid "Captcha verification failed"
+msgid "reCAPTCHA was not verified"
 msgstr ""
 
 #: includes/description-strings.php:375
-msgid "Failed to load Turnstile"
+msgid "Captcha verification failed"
 msgstr ""
 
 #: includes/description-strings.php:376
+msgid "Failed to load Turnstile"
+msgstr ""
+
+#: includes/description-strings.php:377
 msgid "Maximum Images Upload"
 msgstr ""
 
-#: includes/description-strings.php:378
+#. translators: %s is the maximum number of images allowed
+#: includes/description-strings.php:379
 #, php-format
 msgid "You have reached the maximum limit of %s images."
 msgstr ""
 
-#: includes/description-strings.php:379
+#: includes/description-strings.php:380
 msgid "Updating"
 msgstr ""
 
-#: includes/description-strings.php:380
+#: includes/description-strings.php:381
 msgid "Submitting"
 msgstr ""
 
-#: includes/description-strings.php:382
+#. translators: %s is the name or title of the post
+#: includes/description-strings.php:383
 #, php-format
 msgid "%s was updated successfully."
 msgstr ""
 
-#: includes/description-strings.php:384
+#. translators: %s is the name or title of the post
+#: includes/description-strings.php:385
 #, php-format
 msgid "%s was added successfully."
 msgstr ""
 
-#: includes/description-strings.php:385
+#: includes/description-strings.php:386
 msgid "Post updated"
 msgstr ""
 
-#: includes/description-strings.php:386
+#: includes/description-strings.php:387
 msgid "Post submitted"
 msgstr ""
 
-#: includes/description-strings.php:387
+#: includes/description-strings.php:388
 msgid "Update failed"
 msgstr ""
 
-#: includes/description-strings.php:388
+#: includes/description-strings.php:389
 msgid "Submission failed"
 msgstr ""
 
-#: includes/description-strings.php:391
-msgid "Login required to submit"
-msgstr ""
-
 #: includes/description-strings.php:392
-msgid "To continue editing your post, please log in to your account."
+msgid "Log out"
 msgstr ""
 
 #: includes/description-strings.php:393
-msgid "Login required to access posts"
+msgid "Published"
+msgstr ""
+
+#: includes/description-strings.php:394
+msgid "Pending review"
 msgstr ""
 
 #: includes/description-strings.php:395
-msgid "Login required to edit post"
+msgid "Drafts"
+msgstr ""
+
+#: includes/description-strings.php:396
+msgid "No posts yet. Your submissions will appear here."
 msgstr ""
 
 #: includes/description-strings.php:397
-msgid "Please enter a title."
+msgid "Login required to submit"
 msgstr ""
 
 #: includes/description-strings.php:398
-msgid "Please provide an excerpt."
+msgid "To continue editing your post, please log in to your account."
 msgstr ""
 
 #: includes/description-strings.php:399
-msgid "Please enter your username."
-msgstr ""
-
-#: includes/description-strings.php:400
-msgid "Please enter your email address."
+msgid "Login required to access posts"
 msgstr ""
 
 #: includes/description-strings.php:401
-msgid "Title"
-msgstr ""
-
-#: includes/description-strings.php:402
-msgid "Excerpt"
+msgid "Login required to edit post"
 msgstr ""
 
 #: includes/description-strings.php:403
-msgid "User name"
+msgid "Please enter a title."
 msgstr ""
 
 #: includes/description-strings.php:404
-msgid "User email"
+msgid "Please provide an excerpt."
 msgstr ""
 
 #: includes/description-strings.php:405
-msgid "is missing. Please provide it."
+msgid "Please enter your username."
 msgstr ""
 
 #: includes/description-strings.php:406
-msgid "are missing. Please provide them."
+msgid "Please enter your email address."
 msgstr ""
 
 #: includes/description-strings.php:407
-msgid "Image size limit"
+msgid "Title"
+msgstr ""
+
+#: includes/description-strings.php:408
+msgid "Excerpt"
 msgstr ""
 
 #: includes/description-strings.php:409
+msgid "User name"
+msgstr ""
+
+#: includes/description-strings.php:410
+msgid "User email"
+msgstr ""
+
+#: includes/description-strings.php:411
+msgid "is missing. Please provide it."
+msgstr ""
+
+#: includes/description-strings.php:412
+msgid "are missing. Please provide them."
+msgstr ""
+
+#: includes/description-strings.php:413
+msgid "Image size limit"
+msgstr ""
+
+#. translators: %s is the size of the image in KB
+#: includes/description-strings.php:415
 #, php-format
 msgid "The size of the image has exceeded the allowed limit, which is %s KB."
 msgstr ""
 
-#: includes/description-strings.php:410
+#: includes/description-strings.php:416
 msgid "Invalid index to insert the image to editor"
 msgstr ""
 
-#: includes/description-strings.php:411
+#: includes/description-strings.php:417
 msgid "No selection in quill editor"
 msgstr ""
 
-#: includes/description-strings.php:412
+#: includes/description-strings.php:418
 msgid "Error!"
 msgstr ""
 
-#: includes/description-strings.php:413
+#: includes/description-strings.php:419
 msgid "This submission form has been removed by the webmaster. Please check back later."
 msgstr ""
 
-#: includes/description-strings.php:414
+#: includes/description-strings.php:420
 msgid "Unsaved Changes"
 msgstr ""
 
-#: includes/description-strings.php:415
+#: includes/description-strings.php:421
 msgid "Are you sure you want to reload the page without saving your changes?"
 msgstr ""
 
-#: includes/helpers.php:605
+#. translators: %d: maximum number of images allowed
+#: includes/helpers.php:651
 #, php-format
 msgid "Too many images. Maximum allowed: %d"
 msgstr ""
 
-#: includes/helpers.php:633
+#: includes/helpers.php:679
 msgid "Invalid image type detected in content."
 msgstr ""
 
-#: includes/helpers.php:645
+#: includes/helpers.php:691
 msgid "Invalid image data detected in content."
 msgstr ""
 
-#: includes/helpers.php:658
+#. translators: %d: maximum file size in KB
+#: includes/helpers.php:704
 #, php-format
 msgid "Image size exceeds the allowed limit of %d KB."
 msgstr ""
 
-#: includes/helpers.php:675
+#: includes/helpers.php:721
 msgid "Image content does not match declared type."
 msgstr ""
 
-#: includes/helpers.php:692
+#: includes/helpers.php:738
 msgid "Failed to upload image."
 msgstr ""
 
-#: includes/helpers.php:712
+#: includes/helpers.php:758
 msgid "Failed to create media attachment."
 msgstr ""
 
@@ -2102,9 +2188,7 @@ msgid "Post Not Found"
 msgstr ""
 
 #: includes/shortcodes.php:258
-msgid ""
-"The post submission you are trying to edit does not exist. If you believe this is an error, please contact support for "
-"assistance."
+msgid "The post submission you are trying to edit does not exist. If you believe this is an error, please contact support for assistance."
 msgstr ""
 
 #: includes/shortcodes.php:267
@@ -2112,9 +2196,7 @@ msgid "Permission Denied"
 msgstr ""
 
 #: includes/shortcodes.php:268
-msgid ""
-"You do not have permission to edit this submission. If you believe this is an error, please contact support for "
-"assistance."
+msgid "You do not have permission to edit this submission. If you believe this is an error, please contact support for assistance."
 msgstr ""
 
 #: includes/shortcodes.php:279

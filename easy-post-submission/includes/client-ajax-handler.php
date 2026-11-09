@@ -1479,8 +1479,12 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 
 			if ( ! function_exists( 'wp_handle_upload' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/file.php';
-				require_once ABSPATH . 'wp-admin/includes/media.php';
+			}
+			if ( ! function_exists( 'wp_generate_attachment_metadata' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/image.php';
+			}
+			if ( ! function_exists( 'wp_read_video_metadata' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/media.php';
 			}
 
 			$upload = wp_handle_upload( $featured_image_file, [ 'test_form' => false ] );
@@ -1497,8 +1501,13 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 					'context'        => 'rubySubmission',
 					'post_status'    => 'private',
 				];
-				$attachment_id = wp_insert_attachment( $attachment, $upload['file'] );
+				$attachment_id = wp_insert_attachment( $attachment, $upload['file'], $post_id );
 				if ( ! is_wp_error( $attachment_id ) ) {
+					// Generate width/height and intermediate sizes; without this the
+					// attachment has no _wp_attachment_metadata and themes render it at 1x1.
+					$attachment_metadata = wp_generate_attachment_metadata( $attachment_id, $upload['file'] );
+					wp_update_attachment_metadata( $attachment_id, $attachment_metadata );
+
 					$result = set_post_thumbnail( $post_id, $attachment_id );
 				}
 			}
@@ -1930,5 +1939,6 @@ if ( ! class_exists( 'Easy_Post_Submission_Client_Ajax_Handler', false ) ) {
 		}
 	}
 }
-/** load */
+
+// Initialize
 Easy_Post_Submission_Client_Ajax_Handler::get_instance();
